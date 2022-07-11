@@ -16,8 +16,8 @@ import VO.MovieVO;
 public class MovieFrame implements ActionListener {
 	private JButton witch2cgv, witch2megabox, city2cgv, city2megabox, wordcgv, wordmegabox, brocgv, bromegabox, topcgv,
 			topmegabox, bscgv, bsmegabox;
-	private ImageIcon imgcgv = new ImageIcon("D:/work/Movie/src/Image/CGV.png");
-	private ImageIcon imgmegabox = new ImageIcon("D:/work/Movie/src/Image/mega.png");
+	private ImageIcon imgcgv = new ImageIcon("../Movie/src/Image/CGV.png");
+	private ImageIcon imgmegabox = new ImageIcon("../Movie/src/Image/mega.png");
 	private MovieDAO dao;
 	private JFrame f;
 	public MovieFrame() {

@@ -22,7 +22,7 @@ public class MEGABOX implements ListSelectionListener {
 	private JFrame f;
 	private MovieDAO dao;
 	private String[] cols;
-	private JList<String> list;
+	private JList<?> list;
 	private MovieVO vo;
 
 	public MEGABOX() {
