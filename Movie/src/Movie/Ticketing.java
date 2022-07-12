@@ -23,7 +23,7 @@ import javax.swing.SwingConstants;
 public class Ticketing {
 
 	private JFrame f;
-	private JTextField textField;
+	private JTextField screentf;
 	private ButtonGroup bg1;
 	private Panel menup = null;
 	private Panel mainp = null;
@@ -165,7 +165,7 @@ public class Ticketing {
 			choice1.add("11");
 			choice1.add("12");
 
-			choice1.select(4);
+			choice1.select(6); // 7월부터 출력
 
 		}
 		return choice1;
@@ -193,7 +193,6 @@ public class Ticketing {
 		calp.setLayout(new BorderLayout(0, 0));
 		calp.add(getMenup(),BorderLayout.NORTH);
 		calp.add(getMainp(),BorderLayout.CENTER);
-//		calp.setFillsViewportHeight(true);//컨테이너의 전체 높이를 테이블이 전부 사용하도록 설정
 		cp.add(calp);
 		JPanel timep1 = new JPanel();
 		timep1.setLayout(null);
@@ -352,8 +351,8 @@ public class Ticketing {
 		timep5.add(four2);
 
 		JButton nextbtn = new JButton("\uC608\uB9E4\uD558\uAE30");
-		nextbtn.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 12));
-		nextbtn.setBounds(776, 875, 114, 61);
+		nextbtn.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 19));
+		nextbtn.setBounds(684, 875, 270, 61);
 		panel.add(nextbtn);
 
 		JPanel seatp = new JPanel();
@@ -361,15 +360,15 @@ public class Ticketing {
 		seatp.setBounds(5, 497, 672, 439);
 		panel.add(seatp);
 
-		textField = new JTextField();
-		textField.setText("S C R E E N");
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setForeground(Color.WHITE);
-		textField.setFont(new Font("휴먼둥근헤드라인", Font.BOLD, 46));
-		textField.setColumns(10);
-		textField.setBackground(Color.DARK_GRAY);
-		textField.setBounds(12, 10, 648, 97);
-		seatp.add(textField);
+		screentf = new JTextField();
+		screentf.setText("S C R E E N");
+		screentf.setHorizontalAlignment(SwingConstants.CENTER);
+		screentf.setForeground(Color.WHITE);
+		screentf.setFont(new Font("휴먼둥근헤드라인", Font.BOLD, 46));
+		screentf.setColumns(10);
+		screentf.setBackground(Color.DARK_GRAY);
+		screentf.setBounds(12, 10, 648, 97);
+		seatp.add(screentf);
 
 		JPanel alinep = new JPanel();
 		alinep.setBounds(139, 167, 406, 53);
@@ -462,6 +461,8 @@ public class Ticketing {
 
 		JToggleButton d6 = new JToggleButton("D6");
 		dlinep.add(d6);
+		
+		
 		bg1 = new ButtonGroup(); // 좌석 그룹
 		bg1.add(a1);
 		bg1.add(a2);
@@ -490,7 +491,8 @@ public class Ticketing {
 		bg1.add(d4);
 		bg1.add(d5);
 		bg1.add(d6);
-		f.setVisible(true);
+//		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		f.setVisible(true); // 창ㄴ ㅏ옴 
 		f.setLocationRelativeTo(null); // 창이 가운데로
 		f.setResizable(false); // 크기변경 x
 
