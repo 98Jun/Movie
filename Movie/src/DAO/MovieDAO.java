@@ -59,16 +59,16 @@ public class MovieDAO {
 			con = DriverManager.getConnection(url, user, password);
 			System.out.println("연결 완료");
 			String sql = "SELECT c.CINEMA_LOCATION " + " FROM CINEMA c " + "WHERE  c.CINEMA_NAME = " + "'"
-					+ MovieVO.re.getCinema_name() + "'" + "AND c.MOVIE_CORD =" + "'" + MovieVO.re.getMovie_cord() + "'";
+					+ MovieVO.user.getCinema_name() + "'" + "AND c.MOVIE_CORD =" + "'" + MovieVO.user.getMovie_cord() + "'";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			System.out.println(rs);
-			System.out.println(pstmt);
+//			System.out.println(rs);
+//			System.out.println(pstmt);
 
 			while (rs.next()) {
 				name = rs.getString("CINEMA_LOCATION");
 				cols[i] = name;
-				System.out.println(cols[i]);
+//				System.out.println(cols[i]);
 				i++;
 			}
 

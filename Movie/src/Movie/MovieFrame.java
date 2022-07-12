@@ -151,9 +151,9 @@ public class MovieFrame implements ActionListener {
 		MovieVO vo = new MovieVO();
 		dao.insertData(vo);
 		if (e.getSource() == witch2cgv) {
-			vo = new MovieVO("1", "CGV"); // 이제부터 이 버튼 누르면 VO의 영화코드랑 극장브랜드는 이걸로 고정 CGV
-			MovieVO.remember(vo);
-			
+			vo = new MovieVO("1", "CGV"); 
+			MovieVO.remember(vo); // user 에 선언한 vo 코드 입력
+			System.out.println(MovieVO.user.toString());
 
 		} else if (e.getSource() == city2cgv) {
 			vo = new MovieVO("2", "CGV");
@@ -165,12 +165,12 @@ public class MovieFrame implements ActionListener {
 			MovieVO.remember(vo);
 			System.out.println(vo.toString()); // 확인
 
-		} else if (e.getSource() == topcgv) {
+		} else if (e.getSource() == brocgv) {
 			vo = new MovieVO("4", "CGV");
 			MovieVO.remember(vo);
 			System.out.println(vo.toString()); // 확인
 
-		} else if (e.getSource() == brocgv) {
+		} else if (e.getSource() == topcgv) {
 			vo = new MovieVO("5", "CGV");
 			MovieVO.remember(vo);
 			System.out.println(vo.toString()); // 확인

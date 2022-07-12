@@ -5,10 +5,10 @@ public class MovieVO {
 	String cinema_name;
 	String movie_cord;
 	String cinema_cord;
-	public static MovieVO re;
+	public static MovieVO user;
 
 	public static void remember(MovieVO vo) {
-		re = vo;
+		user = vo;
 	}
 
 	public String getCinema_location() {
