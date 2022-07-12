@@ -1,42 +1,181 @@
 package Movie;
 
+import java.awt.BorderLayout;
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.Panel;
+import java.util.Calendar;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-
-import com.toedter.calendar.JCalendar;
-import javax.swing.JToggleButton;
-import javax.swing.JRadioButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.SwingConstants;
 
 public class Ticketing {
 
 	private JFrame f;
 	private JTextField textField;
+	private ButtonGroup bg1;
+	private Panel menup = null;
+	private Panel mainp = null;
+	private Choice choice = null;
+	private Choice choice1 = null;
+	private Label label = null;
+	private Label label1 = null;
+	private JToggleButton[] bt2 = new JToggleButton[42];
+	private int year = 0;
+	private int month = 0;
+	private ButtonGroup bg = new ButtonGroup();
 
 	public static void main(String args[]) {
 		new Ticketing();
 	}
 
 	public Ticketing() {
+		super();
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-		f = new JFrame();
+
+	public Panel getMenup() { // 달력 년 / 월 정하기 
+		if (menup == null) {
+			label1 = new Label();
+			label1.setText("년");
+			label = new Label();
+			label.setText("월");
+			menup = new Panel();
+			menup.setLayout(new FlowLayout());
+			menup.add(getChoice(), null);
+			menup.add(label1, null);
+			menup.add(getChoice1(), null);
+			menup.add(label, null);
+		}
+		return menup;
+	}
+
+	private Panel getMainp() { // 달력 요일, 일 출력
+		if (mainp == null) {
+			mainp = new Panel();
+			mainp.setBackground(Color.LIGHT_GRAY);
+			mainp.setLayout(new GridLayout(7, 7));
+			JLabel[] day1 = new JLabel[7];
+			String[] day = { "일", "월", "화", "수", "목", "금", "토" };
+
+			for (int i = 0; i < 7; i++) {
+				day1[i] = new JLabel(day[i]);
+				mainp.add(day1[i]);
+				day1[i].setHorizontalAlignment(SwingConstants.CENTER);
+			}
+
+			bt2 = new JToggleButton[42];
+			for (int i = 0; i < 42; i++) {
+				bt2[i] = new JToggleButton("");
+				mainp.add(bt2[i]);
+				bg.add(bt2[i]);
+			}
+
+			year = Integer.parseInt(choice.getSelectedItem());
+			month = Integer.parseInt(choice1.getSelectedItem());
+
+			int startDay = 0;
+			int endDay = 0;
+
+			Calendar sDay = java.util.Calendar.getInstance();
+			Calendar eDay = java.util.Calendar.getInstance();
+
+			sDay.set(year, month - 1, 1);
+			eDay.set(year, month, 1);
+			eDay.add(java.util.Calendar.DATE, -1);
+
+			startDay = sDay.get(java.util.Calendar.DAY_OF_WEEK);
+			endDay = eDay.get(java.util.Calendar.DATE);
+
+			for (int i = 1; i <= endDay; i++) {
+				bt2[i + startDay - 2].setLabel(i + "");
+
+			}
+		}
+		return mainp;
+	}
+
+	private Choice getChoice() { // 메뉴에 있는 년도
+		if (choice == null) {
+			choice = new Choice();
+			choice.add("2023");
+			choice.add("2022");
+			choice.select(1);
+		}
+		return choice;
+	}
+
+	private Choice getChoice1() { // 메뉴에 있는 월 
+		if (choice1 == null) {
+			choice1 = new Choice();
+			choice1.addItemListener(new java.awt.event.ItemListener() {
+				public void itemStateChanged(java.awt.event.ItemEvent e) {
+
+					for (int i = 0; i < 42; i++) {
+						bt2[i].setLabel("");
+
+					}
+
+					year = Integer.parseInt(choice.getSelectedItem());
+					month = Integer.parseInt(choice1.getSelectedItem());
+
+					int startDay = 0;
+					int endDay = 0;
+
+					java.util.Calendar sDay = java.util.Calendar.getInstance();
+					java.util.Calendar eDay = java.util.Calendar.getInstance();
+
+					sDay.set(year, month - 1, 1);
+					eDay.set(year, month, 1);
+					eDay.add(java.util.Calendar.DATE, -1);
+
+					startDay = sDay.get(java.util.Calendar.DAY_OF_WEEK);
+					endDay = eDay.get(java.util.Calendar.DATE);
+
+					for (int i = 1; i <= endDay; i++) {
+						bt2[i + startDay - 2].setLabel(i + "");
+					}
+				}
+			});
+			choice1.add("1");
+			choice1.add("2");
+			choice1.add("3");
+			choice1.add("4");
+			choice1.add("5");
+			choice1.add("6");
+			choice1.add("7");
+			choice1.add("8");
+			choice1.add("9");
+			choice1.add("10");
+			choice1.add("11");
+			choice1.add("12");
+
+			choice1.select(4);
+
+		}
+		return choice1;
+	}
+
+	private void initialize() { // 프레임 구현
+		f = new JFrame("날짜 좌석 시간");
 		f.setBounds(100, 100, 1000, 1000);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.getContentPane().setLayout(null);
-
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLACK);
 		panel.setBounds(12, 10, 960, 941);
@@ -48,10 +187,14 @@ public class Ticketing {
 		cp.setBounds(5, 5, 672, 485);
 		panel.add(cp);
 
-		JCalendar calendar = new JCalendar();
-		calendar.setBounds(10, 5, 660, 470);
-		cp.add(calendar);
-
+		JPanel calp = new JPanel();
+		calp.setBackground(Color.GRAY);
+		calp.setBounds(12, 10, 648, 465);
+		calp.setLayout(new BorderLayout(0, 0));
+		calp.add(getMenup(),BorderLayout.NORTH);
+		calp.add(getMainp(),BorderLayout.CENTER);
+//		calp.setFillsViewportHeight(true);//컨테이너의 전체 높이를 테이블이 전부 사용하도록 설정
+		cp.add(calp);
 		JPanel timep1 = new JPanel();
 		timep1.setLayout(null);
 		timep1.setBounds(684, 5, 270, 166);
@@ -233,22 +376,22 @@ public class Ticketing {
 		seatp.add(alinep);
 		alinep.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JToggleButton a1 = new JToggleButton("New");
+		JToggleButton a1 = new JToggleButton("A1");
 		alinep.add(a1);
 
-		JToggleButton a2 = new JToggleButton("New");
+		JToggleButton a2 = new JToggleButton("A2");
 		alinep.add(a2);
 
-		JToggleButton a3 = new JToggleButton("New");
+		JToggleButton a3 = new JToggleButton("A3");
 		alinep.add(a3);
 
-		JToggleButton a4 = new JToggleButton("New");
+		JToggleButton a4 = new JToggleButton("A4");
 		alinep.add(a4);
 
-		JToggleButton a5 = new JToggleButton("New");
+		JToggleButton a5 = new JToggleButton("A5");
 		alinep.add(a5);
 
-		JToggleButton a6 = new JToggleButton("New");
+		JToggleButton a6 = new JToggleButton("A6");
 		alinep.add(a6);
 
 		JPanel blinep = new JPanel();
@@ -256,22 +399,22 @@ public class Ticketing {
 		seatp.add(blinep);
 		blinep.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JToggleButton b1 = new JToggleButton("New");
+		JToggleButton b1 = new JToggleButton("B1");
 		blinep.add(b1);
 
-		JToggleButton b2 = new JToggleButton("New");
+		JToggleButton b2 = new JToggleButton("B2");
 		blinep.add(b2);
 
-		JToggleButton b3 = new JToggleButton("New");
+		JToggleButton b3 = new JToggleButton("B3");
 		blinep.add(b3);
 
-		JToggleButton b4 = new JToggleButton("New");
+		JToggleButton b4 = new JToggleButton("B4");
 		blinep.add(b4);
 
-		JToggleButton b5 = new JToggleButton("New");
+		JToggleButton b5 = new JToggleButton("B5");
 		blinep.add(b5);
 
-		JToggleButton b6 = new JToggleButton("New");
+		JToggleButton b6 = new JToggleButton("B6");
 		blinep.add(b6);
 
 		JPanel clinep = new JPanel();
@@ -279,22 +422,22 @@ public class Ticketing {
 		seatp.add(clinep);
 		clinep.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JToggleButton c1 = new JToggleButton("New");
+		JToggleButton c1 = new JToggleButton("C1");
 		clinep.add(c1);
 
-		JToggleButton c2 = new JToggleButton("New");
+		JToggleButton c2 = new JToggleButton("C2");
 		clinep.add(c2);
 
-		JToggleButton c3 = new JToggleButton("New");
+		JToggleButton c3 = new JToggleButton("C3");
 		clinep.add(c3);
 
-		JToggleButton c4 = new JToggleButton("New");
+		JToggleButton c4 = new JToggleButton("C4");
 		clinep.add(c4);
 
-		JToggleButton c5 = new JToggleButton("New");
+		JToggleButton c5 = new JToggleButton("C5");
 		clinep.add(c5);
 
-		JToggleButton c6 = new JToggleButton("New");
+		JToggleButton c6 = new JToggleButton("C6");
 		clinep.add(c6);
 
 		JPanel dlinep = new JPanel();
@@ -302,24 +445,51 @@ public class Ticketing {
 		seatp.add(dlinep);
 		dlinep.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JToggleButton d1 = new JToggleButton("New");
+		JToggleButton d1 = new JToggleButton("D1");
 		dlinep.add(d1);
 
-		JToggleButton d2 = new JToggleButton("New");
+		JToggleButton d2 = new JToggleButton("D2");
 		dlinep.add(d2);
 
-		JToggleButton d3 = new JToggleButton("New");
+		JToggleButton d3 = new JToggleButton("D3");
 		dlinep.add(d3);
 
-		JToggleButton d4 = new JToggleButton("New");
+		JToggleButton d4 = new JToggleButton("D4");
 		dlinep.add(d4);
 
-		JToggleButton d5 = new JToggleButton("New");
+		JToggleButton d5 = new JToggleButton("D5");
 		dlinep.add(d5);
 
-		JToggleButton d6 = new JToggleButton("New");
+		JToggleButton d6 = new JToggleButton("D6");
 		dlinep.add(d6);
+		bg1 = new ButtonGroup(); // 좌석 그룹
+		bg1.add(a1);
+		bg1.add(a2);
+		bg1.add(a3);
+		bg1.add(a4);
+		bg1.add(a5);
+		bg1.add(a6);
 
+		bg1.add(b1);
+		bg1.add(b2);
+		bg1.add(b3);
+		bg1.add(b4);
+		bg1.add(b5);
+		bg1.add(b6);
+
+		bg1.add(c1);
+		bg1.add(c2);
+		bg1.add(c3);
+		bg1.add(c4);
+		bg1.add(c5);
+		bg1.add(c6);
+
+		bg1.add(d1);
+		bg1.add(d2);
+		bg1.add(d3);
+		bg1.add(d4);
+		bg1.add(d5);
+		bg1.add(d6);
 		f.setVisible(true);
 		f.setLocationRelativeTo(null); // 창이 가운데로
 		f.setResizable(false); // 크기변경 x
