@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 class ImgPanel1 extends JPanel {
+	private static final long serialVersionUID = 1L;
 	private ImageIcon icon = new ImageIcon("../Movie/src/Image/ma.jpg");
 	private Image img = icon.getImage(); // 이미지 객체
 
@@ -17,6 +18,7 @@ class ImgPanel1 extends JPanel {
 }
 
 class ImgPanel2 extends JPanel {
+	private static final long serialVersionUID = 1L;
 	private ImageIcon icon = new ImageIcon("../Movie/src/Image/city2.jpg");
 	private Image img = icon.getImage(); // 이미지 객체
 
@@ -27,6 +29,7 @@ class ImgPanel2 extends JPanel {
 }
 
 class ImgPanel3 extends JPanel {
+	private static final long serialVersionUID = 1L;
 	private ImageIcon icon = new ImageIcon("../Movie/src/Image/word.jpg");
 	private Image img = icon.getImage(); // 이미지 객체
 
@@ -37,6 +40,7 @@ class ImgPanel3 extends JPanel {
 }
 
 class ImgPanel4 extends JPanel {
+	private static final long serialVersionUID = 1L;
 	private ImageIcon icon = new ImageIcon("../Movie/src/Image/bro.jpg");
 	private Image img = icon.getImage(); // 이미지 객체
 
@@ -47,6 +51,7 @@ class ImgPanel4 extends JPanel {
 }
 
 class ImgPanel5 extends JPanel {
+	private static final long serialVersionUID = 1L;
 	private ImageIcon icon = new ImageIcon("../Movie/src/Image/top.jpg");
 	private Image img = icon.getImage(); // 이미지 객체
 
@@ -58,6 +63,7 @@ class ImgPanel5 extends JPanel {
 
 class ImgPanel6 extends JPanel {
 	
+	private static final long serialVersionUID = 1L;
 	private ImageIcon icon = new ImageIcon("../Movie/src/Image/bs.jpg");
 	private Image img = icon.getImage(); // 이미지 객체
 

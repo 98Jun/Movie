@@ -153,7 +153,7 @@ public class MovieFrame implements ActionListener {
 		if (e.getSource() == witch2cgv) {
 			vo = new MovieVO("1", "CGV"); 
 			MovieVO.remember(vo); // user 에 선언한 vo 코드 입력
-			System.out.println(MovieVO.user.toString());
+//			System.out.println(MovieVO.user.toString());
 
 		} else if (e.getSource() == city2cgv) {
 			vo = new MovieVO("2", "CGV");

@@ -78,7 +78,7 @@ public class MEGABOX implements ListSelectionListener {
 			if (list.getSelectedIndex() == i) {
 				name = cols[i];
 				MovieVO.user.setCinema_location(name);
-				System.out.println("re의 정보 : " + MovieVO.user.toString());
+				System.out.println("user의 정보 : " + MovieVO.user.toString());
 			}
 		}
 		for (int j = 1; j <= 6; j++) { // 무비코드
@@ -88,6 +88,8 @@ public class MEGABOX implements ListSelectionListener {
 				for (num = 48; num <= 53; num++) {
 					if (num - 47 == j) {
 						MovieVO.user.setCinema_cord("c" + num);
+						new Ticketing();
+						f.dispose();
 					}
 				}
 			}
@@ -96,6 +98,8 @@ public class MEGABOX implements ListSelectionListener {
 				for (num = 54; num <= 59; num++) {
 					if (num - 53 == j) {
 						MovieVO.user.setCinema_cord("c" + num);
+						new Ticketing();
+						f.dispose();
 					}
 				}
 			}
@@ -104,6 +108,8 @@ public class MEGABOX implements ListSelectionListener {
 				for (num = 60; num <= 65; num++) {
 					if (num - 59 == j) {
 						MovieVO.user.setCinema_cord("c" + num);
+						new Ticketing();
+						f.dispose();
 					}
 				}
 			}
@@ -112,6 +118,8 @@ public class MEGABOX implements ListSelectionListener {
 				for (num = 66; num <= 71; num++) {
 					if (num - 65 == j) {
 						MovieVO.user.setCinema_cord("c" + num);
+						new Ticketing();
+						f.dispose();
 					}
 				}
 			}
@@ -120,6 +128,8 @@ public class MEGABOX implements ListSelectionListener {
 				for (num = 72; num <= 77; num++) {
 					if (num - 71 == j) {
 						MovieVO.user.setCinema_cord("c" + num);
+						new Ticketing();
+						f.dispose();
 					}
 				}
 			}
@@ -128,6 +138,8 @@ public class MEGABOX implements ListSelectionListener {
 				for (num = 78; num <= 83; num++) {
 					if (num - 77 == j) {
 						MovieVO.user.setCinema_cord("c" + num);
+						new Ticketing();
+						f.dispose();
 					}
 				}
 			}
@@ -136,6 +148,8 @@ public class MEGABOX implements ListSelectionListener {
 				for (num = 84; num <= 89; num++) {
 					if (num - 83 == j) {
 						MovieVO.user.setCinema_cord("c" + num);
+						new Ticketing();
+						f.dispose();
 					}
 				}
 			}
@@ -144,6 +158,8 @@ public class MEGABOX implements ListSelectionListener {
 				for (num = 90; num <= 95; num++) {
 					if (num - 89 == j) {
 						MovieVO.user.setCinema_cord("c" + num);
+						new Ticketing();
+						f.dispose();
 					}
 				}
 			}

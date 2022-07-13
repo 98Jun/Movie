@@ -8,11 +8,11 @@ import java.sql.ResultSet;
 import VO.MovieVO;
 
 public class MovieDAO {
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	String user = "c##green";
-	String password = "green1234";
-	Connection con;
+	private String driver = "oracle.jdbc.driver.OracleDriver";
+	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	private String user = "c##green";
+	private String password = "green1234";
+	private Connection con;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	String code;
@@ -59,7 +59,8 @@ public class MovieDAO {
 			con = DriverManager.getConnection(url, user, password);
 			System.out.println("연결 완료");
 			String sql = "SELECT c.CINEMA_LOCATION " + " FROM CINEMA c " + "WHERE  c.CINEMA_NAME = " + "'"
-					+ MovieVO.user.getCinema_name() + "'" + "AND c.MOVIE_CORD =" + "'" + MovieVO.user.getMovie_cord() + "'";
+					+ MovieVO.user.getCinema_name() + "'" + "AND c.MOVIE_CORD =" + "'" + MovieVO.user.getMovie_cord()
+					+ "'";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 //			System.out.println(rs);

@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Calendar;
 
 import javax.swing.ButtonGroup;
@@ -20,11 +22,16 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 
-public class Ticketing {
+import DAO.SeatDAO;
+import VO.SeatVO;
+
+public class Ticketing implements ActionListener {
 
 	private JFrame f;
 	private JTextField screentf;
-	private ButtonGroup bg1;
+	private ButtonGroup bgseat;
+	private ButtonGroup bgtime = new ButtonGroup();
+	private JRadioButton[] timebt = new JRadioButton[20];
 	private Panel menup = null;
 	private Panel mainp = null;
 	private Choice choice = null;
@@ -35,11 +42,18 @@ public class Ticketing {
 	private int year = 0;
 	private int month = 0;
 	private ButtonGroup bg = new ButtonGroup();
-
-	public static void main(String args[]) {
-		new Ticketing();
-	}
-
+	private JToggleButton[] bt = new JToggleButton[24];
+	private String seat[] = { "a1", "a2", "a3", "a4", "a5", "a6", "b1", "b2", "b3", "b4", "b5", "b6", "c1", "c2", "c3",
+			"c4", "c5", "c6", "d1", "d2", "d3", "d4", "d5", "d6" };;
+	private String time[] = { "09 : 20", "10 : 30", "12 : 00", "16 : 50", "08 : 00", "09 : 00", "14 : 30", "17 : 20",
+			"17 : 00", "20 : 00", "21 : 10", "23 : 20", "11 : 30", "12 : 00", "16 : 50", "23 : 30", "09 : 00",
+			"19 : 20", "22 : 20", "23 : 00" };
+	private JButton nextbtn;
+	private String days;
+	private SeatVO vo;
+	private SeatDAO dao;
+	private String seatcord;
+	FailText ft;
 	public Ticketing() {
 		super();
 		initialize();
@@ -49,7 +63,7 @@ public class Ticketing {
 	 * Initialize the contents of the frame.
 	 */
 
-	public Panel getMenup() { // 殖溘 喇 / 錯 薑ж晦 
+	public Panel getMenup() { // 殖溘 喇 / 錯 薑ж晦
 		if (menup == null) {
 			label1 = new Label();
 			label1.setText("喇");
@@ -80,10 +94,11 @@ public class Ticketing {
 			}
 
 			bt2 = new JToggleButton[42];
-			for (int i = 0; i < 42; i++) {
+			for (int i = 0; i < 42; i++) { // 橾
 				bt2[i] = new JToggleButton("");
 				mainp.add(bt2[i]);
 				bg.add(bt2[i]);
+				bt2[i].addActionListener(this);
 			}
 
 			year = Integer.parseInt(choice.getSelectedItem());
@@ -103,7 +118,7 @@ public class Ticketing {
 			endDay = eDay.get(java.util.Calendar.DATE);
 
 			for (int i = 1; i <= endDay; i++) {
-				bt2[i + startDay - 2].setLabel(i + "");
+				bt2[i + startDay - 2].setText(i + "");
 
 			}
 		}
@@ -113,21 +128,21 @@ public class Ticketing {
 	private Choice getChoice() { // 詭景縑 氈朝 喇紫
 		if (choice == null) {
 			choice = new Choice();
-			choice.add("2023");
+//			choice.add("2023");
 			choice.add("2022");
-			choice.select(1);
+//			choice.select(1);
 		}
 		return choice;
 	}
 
-	private Choice getChoice1() { // 詭景縑 氈朝 錯 
+	private Choice getChoice1() { // 詭景縑 氈朝 錯
 		if (choice1 == null) {
 			choice1 = new Choice();
 			choice1.addItemListener(new java.awt.event.ItemListener() {
 				public void itemStateChanged(java.awt.event.ItemEvent e) {
 
 					for (int i = 0; i < 42; i++) {
-						bt2[i].setLabel("");
+						bt2[i].setText("");
 
 					}
 
@@ -148,7 +163,7 @@ public class Ticketing {
 					endDay = eDay.get(java.util.Calendar.DATE);
 
 					for (int i = 1; i <= endDay; i++) {
-						bt2[i + startDay - 2].setLabel(i + "");
+						bt2[i + startDay - 2].setText(i + "");
 					}
 				}
 			});
@@ -172,6 +187,8 @@ public class Ticketing {
 	}
 
 	private void initialize() { // Щ溯歜 掘⑷
+		vo = new SeatVO();
+		dao = new SeatDAO();
 		f = new JFrame("陳瞼 謝戮 衛除");
 		f.setBounds(100, 100, 1000, 1000);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -191,34 +208,13 @@ public class Ticketing {
 		calp.setBackground(Color.GRAY);
 		calp.setBounds(12, 10, 648, 465);
 		calp.setLayout(new BorderLayout(0, 0));
-		calp.add(getMenup(),BorderLayout.NORTH);
-		calp.add(getMainp(),BorderLayout.CENTER);
+		calp.add(getMenup(), BorderLayout.NORTH);
+		calp.add(getMainp(), BorderLayout.CENTER);
 		cp.add(calp);
 		JPanel timep1 = new JPanel();
 		timep1.setLayout(null);
 		timep1.setBounds(684, 5, 270, 166);
 		panel.add(timep1);
-
-		JRadioButton rb1 = new JRadioButton("09 : 20");
-		rb1.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb1.setForeground(Color.BLACK);
-		rb1.setBounds(33, 49, 69, 23);
-		timep1.add(rb1);
-
-		JRadioButton rb3 = new JRadioButton("12 : 00");
-		rb3.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb3.setBounds(33, 95, 69, 23);
-		timep1.add(rb3);
-
-		JRadioButton rb4 = new JRadioButton("16 : 50");
-		rb4.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb4.setBounds(163, 95, 69, 23);
-		timep1.add(rb4);
-
-		JRadioButton rb2 = new JRadioButton("10 : 30");
-		rb2.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb2.setBounds(163, 49, 69, 23);
-		timep1.add(rb2);
 
 		JLabel two = new JLabel("2\uCE35 1\uAD00");
 		two.setFont(new Font("蜈擎 堅蛐 Semilight", Font.BOLD, 12));
@@ -226,131 +222,17 @@ public class Ticketing {
 		two.setBounds(207, 10, 57, 15);
 		timep1.add(two);
 
-		JPanel timep2 = new JPanel();
-		timep2.setLayout(null);
-		timep2.setBounds(684, 176, 270, 166);
-		panel.add(timep2);
+		JPanel twop1 = new JPanel();
+		twop1.setBounds(25, 46, 178, 41);
+		timep1.add(twop1);
+		twop1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JRadioButton rb7 = new JRadioButton("14 : 30");
-		rb7.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb7.setBounds(33, 95, 69, 23);
-		timep2.add(rb7);
+		JPanel twop2 = new JPanel();
+		twop2.setBounds(25, 97, 178, 41);
+		timep1.add(twop2);
+		twop2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JRadioButton rb5 = new JRadioButton("08 : 00");
-		rb5.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb5.setBounds(33, 49, 69, 23);
-		timep2.add(rb5);
-
-		JRadioButton rb6 = new JRadioButton("09 : 00");
-		rb6.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb6.setBounds(163, 49, 69, 23);
-		timep2.add(rb6);
-
-		JRadioButton rb8 = new JRadioButton("17 : 20");
-		rb8.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb8.setBounds(163, 95, 69, 23);
-		timep2.add(rb8);
-
-		JLabel three1 = new JLabel("3\uCE35 1\uAD00");
-		three1.setFont(new Font("蜈擎 堅蛐 Semilight", Font.BOLD, 12));
-		three1.setHorizontalAlignment(SwingConstants.CENTER);
-		three1.setBounds(207, 10, 57, 15);
-		timep2.add(three1);
-
-		JPanel timep3 = new JPanel();
-		timep3.setLayout(null);
-		timep3.setBounds(684, 352, 270, 166);
-		panel.add(timep3);
-
-		JRadioButton rb9 = new JRadioButton("21 : 10");
-		rb9.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb9.setBounds(33, 95, 69, 23);
-		timep3.add(rb9);
-
-		JRadioButton rb10 = new JRadioButton("17 : 00");
-		rb10.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb10.setBounds(33, 49, 69, 23);
-		timep3.add(rb10);
-
-		JRadioButton rb11 = new JRadioButton("20 : 00");
-		rb11.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb11.setBounds(163, 49, 69, 23);
-		timep3.add(rb11);
-
-		JRadioButton rb12 = new JRadioButton("23 : 20");
-		rb12.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb12.setBounds(163, 95, 69, 23);
-		timep3.add(rb12);
-
-		JLabel three2 = new JLabel("3\uCE35 2\uAD00");
-		three2.setFont(new Font("蜈擎 堅蛐 Semilight", Font.BOLD, 12));
-		three2.setHorizontalAlignment(SwingConstants.CENTER);
-		three2.setBounds(207, 10, 57, 15);
-		timep3.add(three2);
-
-		JPanel four = new JPanel();
-		four.setLayout(null);
-		four.setBounds(684, 528, 270, 166);
-		panel.add(four);
-
-		JRadioButton rb13 = new JRadioButton("16 : 50");
-		rb13.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb13.setBounds(33, 95, 69, 23);
-		four.add(rb13);
-
-		JRadioButton rb14 = new JRadioButton("11: 30");
-		rb14.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb14.setBounds(33, 49, 69, 23);
-		four.add(rb14);
-
-		JRadioButton rb15 = new JRadioButton("12 : 00");
-		rb15.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb15.setBounds(163, 49, 69, 23);
-		four.add(rb15);
-
-		JRadioButton rb16 = new JRadioButton("23: 30");
-		rb16.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb16.setBounds(163, 95, 69, 23);
-		four.add(rb16);
-
-		JLabel lblNewLabel_3 = new JLabel("4\uCE35 1\uAD00");
-		lblNewLabel_3.setFont(new Font("蜈擎 堅蛐 Semilight", Font.BOLD, 12));
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(207, 10, 57, 15);
-		four.add(lblNewLabel_3);
-
-		JPanel timep5 = new JPanel();
-		timep5.setLayout(null);
-		timep5.setBounds(684, 704, 270, 166);
-		panel.add(timep5);
-
-		JRadioButton rb17 = new JRadioButton("22: 20");
-		rb17.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb17.setBounds(33, 95, 69, 23);
-		timep5.add(rb17);
-
-		JRadioButton rb18 = new JRadioButton("09 : 00");
-		rb18.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb18.setBounds(33, 49, 69, 23);
-		timep5.add(rb18);
-
-		JRadioButton rb19 = new JRadioButton("19 : 20");
-		rb19.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb19.setBounds(163, 49, 69, 23);
-		timep5.add(rb19);
-
-		JRadioButton rb20 = new JRadioButton("23 : 00");
-		rb20.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		rb20.setBounds(163, 95, 69, 23);
-		timep5.add(rb20);
-
-		JLabel four2 = new JLabel("4\uCE35 2\uAD00");
-		four2.setFont(new Font("蜈擎 堅蛐 Semilight", Font.BOLD, 12));
-		four2.setHorizontalAlignment(SwingConstants.CENTER);
-		four2.setBounds(207, 10, 57, 15);
-		timep5.add(four2);
-
-		JButton nextbtn = new JButton("\uC608\uB9E4\uD558\uAE30");
+		nextbtn = new JButton("\uC608\uB9E4\uD558\uAE30");
 		nextbtn.setFont(new Font("�瑏桮梇棽黖撊騔�", Font.PLAIN, 19));
 		nextbtn.setBounds(684, 875, 270, 61);
 		panel.add(nextbtn);
@@ -370,131 +252,186 @@ public class Ticketing {
 		screentf.setBounds(12, 10, 648, 97);
 		seatp.add(screentf);
 
-		JPanel alinep = new JPanel();
-		alinep.setBounds(139, 167, 406, 53);
-		seatp.add(alinep);
-		alinep.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		JPanel setp = new JPanel();
+		setp.setBounds(165, 180, 328, 233);
+		seatp.add(setp);
+		setp.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JToggleButton a1 = new JToggleButton("A1");
-		alinep.add(a1);
+		JPanel timep2 = new JPanel();
+		timep2.setLayout(null);
+		timep2.setBounds(684, 176, 270, 166);
+		panel.add(timep2);
 
-		JToggleButton a2 = new JToggleButton("A2");
-		alinep.add(a2);
+		JLabel tree1 = new JLabel("3\uCE35 1\uAD00");
+		tree1.setHorizontalAlignment(SwingConstants.CENTER);
+		tree1.setFont(new Font("蜈擎 堅蛐 Semilight", Font.BOLD, 12));
+		tree1.setBounds(207, 10, 57, 15);
+		timep2.add(tree1);
 
-		JToggleButton a3 = new JToggleButton("A3");
-		alinep.add(a3);
+		JPanel treep1 = new JPanel();
+		treep1.setBounds(25, 46, 178, 41);
+		timep2.add(treep1);
+		treep1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JToggleButton a4 = new JToggleButton("A4");
-		alinep.add(a4);
+		JPanel treep2 = new JPanel();
+		treep2.setBounds(25, 97, 178, 41);
+		timep2.add(treep2);
+		treep2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JToggleButton a5 = new JToggleButton("A5");
-		alinep.add(a5);
+		JPanel timep3 = new JPanel();
+		timep3.setLayout(null);
+		timep3.setBounds(684, 352, 270, 166);
+		panel.add(timep3);
 
-		JToggleButton a6 = new JToggleButton("A6");
-		alinep.add(a6);
+		JLabel tree2 = new JLabel("3\uCE35 2\uAD00");
+		tree2.setHorizontalAlignment(SwingConstants.CENTER);
+		tree2.setFont(new Font("蜈擎 堅蛐 Semilight", Font.BOLD, 12));
+		tree2.setBounds(207, 10, 57, 15);
+		timep3.add(tree2);
 
-		JPanel blinep = new JPanel();
-		blinep.setBounds(139, 230, 406, 53);
-		seatp.add(blinep);
-		blinep.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		JPanel treep2_1 = new JPanel();
+		treep2_1.setBounds(25, 46, 178, 41);
+		timep3.add(treep2_1);
+		treep2_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JToggleButton b1 = new JToggleButton("B1");
-		blinep.add(b1);
+		JPanel treep2_2 = new JPanel();
+		treep2_2.setBounds(25, 97, 178, 41);
+		timep3.add(treep2_2);
+		treep2_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JToggleButton b2 = new JToggleButton("B2");
-		blinep.add(b2);
+		JPanel timep4 = new JPanel();
+		timep4.setLayout(null);
+		timep4.setBounds(684, 528, 270, 166);
+		panel.add(timep4);
 
-		JToggleButton b3 = new JToggleButton("B3");
-		blinep.add(b3);
+		JLabel tour1 = new JLabel("4\uCE35 1\uAD00");
+		tour1.setHorizontalAlignment(SwingConstants.CENTER);
+		tour1.setFont(new Font("蜈擎 堅蛐 Semilight", Font.BOLD, 12));
+		tour1.setBounds(207, 10, 57, 15);
+		timep4.add(tour1);
 
-		JToggleButton b4 = new JToggleButton("B4");
-		blinep.add(b4);
+		JPanel fourp1 = new JPanel();
+		fourp1.setBounds(25, 46, 178, 41);
+		timep4.add(fourp1);
+		fourp1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JToggleButton b5 = new JToggleButton("B5");
-		blinep.add(b5);
+		JPanel fourp2 = new JPanel();
+		fourp2.setBounds(25, 97, 178, 41);
+		timep4.add(fourp2);
+		fourp2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JToggleButton b6 = new JToggleButton("B6");
-		blinep.add(b6);
+		JPanel timep5 = new JPanel();
+		timep5.setLayout(null);
+		timep5.setBounds(684, 704, 270, 166);
+		panel.add(timep5);
 
-		JPanel clinep = new JPanel();
-		clinep.setBounds(139, 293, 406, 53);
-		seatp.add(clinep);
-		clinep.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		JLabel four2 = new JLabel("4\uCE35 2\uAD00");
+		four2.setHorizontalAlignment(SwingConstants.CENTER);
+		four2.setFont(new Font("蜈擎 堅蛐 Semilight", Font.BOLD, 12));
+		four2.setBounds(207, 10, 57, 15);
+		timep5.add(four2);
 
-		JToggleButton c1 = new JToggleButton("C1");
-		clinep.add(c1);
+		JPanel fourp2_1 = new JPanel();
+		fourp2_1.setBounds(25, 46, 178, 41);
+		timep5.add(fourp2_1);
+		fourp2_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JToggleButton c2 = new JToggleButton("C2");
-		clinep.add(c2);
+		JPanel fourp2_2 = new JPanel();
+		fourp2_2.setBounds(25, 97, 178, 41);
+		timep5.add(fourp2_2);
+		fourp2_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JToggleButton c3 = new JToggleButton("C3");
-		clinep.add(c3);
+		bgseat = new ButtonGroup();
+		for (int i = 0; i < 24; i++) { // 謝戮 幗が 掘⑷ 塽 斜瑜 撲薑
+			bt[i] = new JToggleButton(seat[i]);
+			setp.add(bt[i]);
+			bt[i].setHorizontalAlignment(SwingConstants.CENTER);
+			bgseat.add(bt[i]);
+//			bt[i].addActionListener(this);
+			String myseat = bt[i].getText();
+			bt[i].addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (e.getActionCommand().equals(myseat)) {
+						vo.setSeat_number(myseat);
+						SeatVO.remember(vo);
+					}
+				}
+			});
+		}
+		for (int i = 0; i < 20; i++) { // 衛除 幗が 掘⑷
+			timebt[i] = new JRadioButton(time[i]);
+			bgtime.add(timebt[i]);
+			String times = timebt[i].getText();
+			timebt[i].addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (e.getActionCommand().equals(times)) {
+						vo.setTime(times);
+					}
+				}
+			});
+		}
 
-		JToggleButton c4 = new JToggleButton("C4");
-		clinep.add(c4);
-
-		JToggleButton c5 = new JToggleButton("C5");
-		clinep.add(c5);
-
-		JToggleButton c6 = new JToggleButton("C6");
-		clinep.add(c6);
-
-		JPanel dlinep = new JPanel();
-		dlinep.setBounds(139, 356, 406, 53);
-		seatp.add(dlinep);
-		dlinep.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-		JToggleButton d1 = new JToggleButton("D1");
-		dlinep.add(d1);
-
-		JToggleButton d2 = new JToggleButton("D2");
-		dlinep.add(d2);
-
-		JToggleButton d3 = new JToggleButton("D3");
-		dlinep.add(d3);
-
-		JToggleButton d4 = new JToggleButton("D4");
-		dlinep.add(d4);
-
-		JToggleButton d5 = new JToggleButton("D5");
-		dlinep.add(d5);
-
-		JToggleButton d6 = new JToggleButton("D6");
-		dlinep.add(d6);
-		
-		
-		bg1 = new ButtonGroup(); // 謝戮 斜瑜
-		bg1.add(a1);
-		bg1.add(a2);
-		bg1.add(a3);
-		bg1.add(a4);
-		bg1.add(a5);
-		bg1.add(a6);
-
-		bg1.add(b1);
-		bg1.add(b2);
-		bg1.add(b3);
-		bg1.add(b4);
-		bg1.add(b5);
-		bg1.add(b6);
-
-		bg1.add(c1);
-		bg1.add(c2);
-		bg1.add(c3);
-		bg1.add(c4);
-		bg1.add(c5);
-		bg1.add(c6);
-
-		bg1.add(d1);
-		bg1.add(d2);
-		bg1.add(d3);
-		bg1.add(d4);
-		bg1.add(d5);
-		bg1.add(d6);
-//		天天天天天天天天天天天天天天天天天天天天天天天天天天天天天天天天天
-		f.setVisible(true); // 璽中 凶褥 
+		for (int i = 0; i < 2; i++) {
+			twop1.add(timebt[i]);
+		}
+		for (int i = 2; i < 4; i++) {
+			twop2.add(timebt[i]);
+		}
+		for (int i = 4; i < 6; i++) {
+			treep1.add(timebt[i]);
+		}
+		for (int i = 6; i < 8; i++) {
+			treep2.add(timebt[i]);
+		}
+		for (int i = 8; i < 10; i++) {
+			treep2_1.add(timebt[i]);
+		}
+		for (int i = 10; i < 12; i++) {
+			treep2_2.add(timebt[i]);
+		}
+		for (int i = 12; i < 14; i++) {
+			fourp1.add(timebt[i]);
+		}
+		for (int i = 14; i < 16; i++) {
+			fourp2.add(timebt[i]);
+		}
+		for (int i = 16; i < 18; i++) {
+			fourp2_1.add(timebt[i]);
+		}
+		for (int i = 18; i < 20; i++) {
+			fourp2_2.add(timebt[i]);
+		}
+		// 天天天天天天天天天天天天天天天天天天天天天天天天天天天天天天天天天
+		nextbtn.addActionListener(this);
+		f.setVisible(true); // 璽中 凶褥
 		f.setLocationRelativeTo(null); // 璽檜 陛遴等煎
 		f.setResizable(false); // 觼晦滲唳 x
+	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+//		
+		for (int i = 0; i < 42; i++) { // 橾 高
+			days = year + "-" + month + "-" + bt2[i].getText();
+			if (e.getSource() == bt2[i]) {
+				System.out.println(year + "-" + month + "-" + bt2[i].getText());
+				vo.setDay(days);
+				SeatVO.remember(vo);
+				break;
+			}
+		}
+		if (e.getSource() == nextbtn) {
+			seatcord = SeatVO.user1.getMovie_cord() + SeatVO.user1.getCinema_cord() + SeatVO.user1.getSeat_number();
+			vo.setSeat_cord(seatcord);
+
+			Boolean b = dao.ticket(SeatVO.user1);
+			if (b == true) {
+				new Success();
+				f.dispose();
+			} 
+			System.out.println(SeatVO.user1.toString());
+		}
 	}
 }

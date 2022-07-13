@@ -81,7 +81,9 @@ public class CGV implements ListSelectionListener {
 			if (list.getSelectedIndex() == i) {
 				name = cols[i];
 				MovieVO.user.setCinema_location(name);
-				System.out.println("re의 정보 : " + MovieVO.user.toString());
+//				System.out.println("user의 정보 : " + MovieVO.user.toString()); // 정보 확인
+//				new Ticketing();
+//				f.dispose();
 			}
 		}
 		for (int j = 1; j <= 6; j++) { // 무비코드
@@ -91,6 +93,9 @@ public class CGV implements ListSelectionListener {
 				for (num = 1; num <= 6; num++) {
 					if (num == j) {
 						MovieVO.user.setCinema_cord("c" + num);
+//						System.out.println("re의 정보 : " + MovieVO.user.toString()); // 들어갓는지 확인..
+						new Ticketing();
+						f.dispose();
 					}
 				}
 			}
@@ -99,6 +104,8 @@ public class CGV implements ListSelectionListener {
 				for (num = 7; num <= 11; num++) {
 					if (num - 6 == j) {
 						MovieVO.user.setCinema_cord("c" + num);
+						new Ticketing();
+						f.dispose();
 					}
 				}
 			}
@@ -107,6 +114,8 @@ public class CGV implements ListSelectionListener {
 				for (num = 12; num <= 17; num++) {
 					if (num - 11 == j) {
 						MovieVO.user.setCinema_cord("c" + num);
+						new Ticketing();
+						f.dispose();
 					}
 				}
 			}
@@ -115,6 +124,8 @@ public class CGV implements ListSelectionListener {
 				for (num = 18; num <= 23; num++) {
 					if (num - 17 == j) {
 						MovieVO.user.setCinema_cord("c" + num);
+						new Ticketing();
+						f.dispose();
 					}
 				}
 			}
@@ -123,6 +134,8 @@ public class CGV implements ListSelectionListener {
 				for (num = 24; num <= 29; num++) {
 					if (num - 23 == j) {
 						MovieVO.user.setCinema_cord("c" + num);
+						new Ticketing();
+						f.dispose();
 					}
 				}
 			}
@@ -131,6 +144,8 @@ public class CGV implements ListSelectionListener {
 				for (num = 30; num <= 35; num++) {
 					if (num - 29 == j) {
 						MovieVO.user.setCinema_cord("c" + num);
+						new Ticketing();
+						f.dispose();
 					}
 				}
 			}
@@ -139,6 +154,8 @@ public class CGV implements ListSelectionListener {
 				for (num = 36; num <= 41; num++) {
 					if (num - 35 == j) {
 						MovieVO.user.setCinema_cord("c" + num);
+						new Ticketing();
+						f.dispose();
 					}
 				}
 			}
@@ -147,6 +164,8 @@ public class CGV implements ListSelectionListener {
 				for (num = 42; num <= 47; num++) {
 					if (num - 41 == j) {
 						MovieVO.user.setCinema_cord("c" + num);
+						new Ticketing();
+						f.dispose();
 					}
 				}
 			}

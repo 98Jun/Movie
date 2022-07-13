@@ -8,36 +8,36 @@ import java.sql.ResultSet;
 import VO.HoewonVO;
 
 public class HoewonDAO {
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	String user = "c##green";
-	String password = "green1234";
-	 Connection con;
+	private String driver = "oracle.jdbc.driver.OracleDriver";
+	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	private String user = "c##green";
+	private String password = "green1234";
+	private Connection con;
 	private PreparedStatement pstmt;
 	ResultSet rs;
 
 	public boolean insertData(HoewonVO vo) {
-		String sql ;
+		String sql;
 
 		try {
-			
+
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, user, password);
 			sql = "insert into login(id,pw,name) ";
 			sql += "values(?,?,?)";
-			pstmt =con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getPw());
 			pstmt.setString(3, vo.getName());
 			pstmt.executeUpdate();
 			pstmt.close();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 		}
 		return true;
-		
+
 	}
 
 	public void connDB() {

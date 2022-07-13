@@ -8,9 +8,11 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class FailText {
-	public JFrame frame;
+	public JFrame f;
 	
 	public FailText() {
 		initialize();
@@ -18,21 +20,26 @@ public class FailText {
 
 
 	private void initialize() {
-		frame = new JFrame("Fail");
-		frame.setSize(new Dimension(383, 236));
+		f = new JFrame("Fail");
+		f.setSize(new Dimension(383, 236));
 //		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null); // 창이 가운데로
-		frame.setResizable(false);
+		f.setLocationRelativeTo(null); // 창이 가운데로
+		f.setResizable(false);
+		f.getContentPane().setLayout(null);
 		
-		JLabel faillabel = new JLabel("\uB85C\uADF8\uC778 \uC2E4\uD328");
-		faillabel.setFont(new Font("굴림", Font.BOLD, 29));
-		faillabel.setHorizontalAlignment(JLabel.CENTER); // 가운데 정렬 
-
-		frame.getContentPane().add(faillabel, BorderLayout.CENTER);
-		frame.setVisible(true);	
-		frame.addWindowListener(new WindowAdapter() {
+		JPanel p = new JPanel();
+		p.setBounds(12, 10, 343, 177);
+		f.getContentPane().add(p);
+		p.setLayout(new BorderLayout(0, 0));
+		
+		JLabel text = new JLabel("\uB85C\uADF8\uC778 \uC2E4\uD328");
+		text.setHorizontalAlignment(SwingConstants.CENTER);
+		text.setFont(new Font("굴림", Font.BOLD, 49));
+		p.add(text);
+		f.setVisible(true);	
+		f.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				frame.setVisible(false);
+				f.setVisible(false);
 			}
 		});
 			
