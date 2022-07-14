@@ -62,7 +62,7 @@ class ImgPanel5 extends JPanel {
 }
 
 class ImgPanel6 extends JPanel {
-	
+
 	private static final long serialVersionUID = 1L;
 	private ImageIcon icon = new ImageIcon("../Movie/src/Image/bs.jpg");
 	private Image img = icon.getImage(); // ¿ÃπÃ¡ˆ ∞¥√º
@@ -71,7 +71,7 @@ class ImgPanel6 extends JPanel {
 		super.paintComponent(g);
 		g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
 	}
-	
+
 }
 //class ImgPanel7 extends JPanel {
 //	
@@ -82,6 +82,3 @@ class ImgPanel6 extends JPanel {
 //		super.paintComponent(g);
 //		g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
 //	}
-
-	
-

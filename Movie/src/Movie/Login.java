@@ -23,7 +23,6 @@ public class Login {
 	private JTextField pwtf;
 	private UserDAO dao;
 
-	
 	public Login() {
 		initialize();
 	}
@@ -59,37 +58,39 @@ public class Login {
 		loginbtn.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) { // 버튼을 눌럿을 떄 
+			public void actionPerformed(ActionEvent e) { // 버튼을 눌럿을 떄
 
-				if (idtf.getText().equals("")) { // 
+				if (idtf.getText().equals("")) { //
 					new FailText();
 				} else if (pwtf.getText().equals("")) {
 					new FailText();
 				} else {
-					UserVO vo = new UserVO(idtf.getText(), pwtf.getText()); // 디비에 있던 거랑 비교 
+					UserVO vo = new UserVO(idtf.getText(), pwtf.getText()); // 디비에 있던 거랑 비교
 					boolean b = dao.list(vo);
 					if (b == true) {
+						vo.setId(idtf.getText());
+						UserVO.r(vo);
+//						System.out.println(UserVO.user.getId());
 						new MovieFrame();
 						f.dispose();
-					} else 
+					} else
 						new FailText();
-					
+
 				}
 			}
 		});
 		JButton hoewonbtn = new JButton("회원가입");
 		hoewonbtn.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new Hoewon();
-				
+
 			}
 		});
 		loginbtn.setBounds(273, 26, 97, 65);
 		p1.add(loginbtn);
 
-		
 		hoewonbtn.setBounds(273, 112, 97, 23);
 		p1.add(hoewonbtn);
 

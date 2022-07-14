@@ -20,6 +20,7 @@ public class MovieFrame implements ActionListener {
 	private ImageIcon imgmegabox = new ImageIcon("../Movie/src/Image/mega.png");
 	private MovieDAO dao;
 	private JFrame f;
+
 	public MovieFrame() {
 		dao = new MovieDAO();
 		f = new JFrame("영화 선택");
@@ -151,7 +152,7 @@ public class MovieFrame implements ActionListener {
 		MovieVO vo = new MovieVO();
 		dao.insertData(vo);
 		if (e.getSource() == witch2cgv) {
-			vo = new MovieVO("1", "CGV"); 
+			vo = new MovieVO("1", "CGV");
 			MovieVO.remember(vo); // user 에 선언한 vo 코드 입력
 //			System.out.println(MovieVO.user.toString());
 

@@ -3,7 +3,6 @@ package DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 import VO.HoewonVO;
 
@@ -14,7 +13,6 @@ public class HoewonDAO {
 	private String password = "green1234";
 	private Connection con;
 	private PreparedStatement pstmt;
-	ResultSet rs;
 
 	public boolean insertData(HoewonVO vo) {
 		String sql;
@@ -35,24 +33,15 @@ public class HoewonDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			if (con != null) {
+				con = null;
+			}
+			if (pstmt != null) {
+				pstmt = null;
+			}
 		}
 		return true;
 
 	}
 
-	public void connDB() {
-		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, user, password);
-			pstmt = null;
-			System.out.println("jdbc driver loading success.");
-			System.out.println("oracle connection success.\n");
-			System.out.println("Preparedstatement create success.\n");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-//	public boolean list(HoewonVO vo) {
-//		return false;
-//	}
 }

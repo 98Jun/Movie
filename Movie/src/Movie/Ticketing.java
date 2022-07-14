@@ -23,7 +23,9 @@ import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 
 import DAO.SeatDAO;
+import DAO.TicketDAO;
 import VO.SeatVO;
+import VO.TicketVO;
 
 public class Ticketing implements ActionListener {
 
@@ -54,6 +56,7 @@ public class Ticketing implements ActionListener {
 	private SeatDAO dao;
 	private String seatcord;
 	FailText ft;
+
 	public Ticketing() {
 		super();
 		initialize();
@@ -416,7 +419,7 @@ public class Ticketing implements ActionListener {
 		for (int i = 0; i < 42; i++) { // ÀÏ °ª
 			days = year + "-" + month + "-" + bt2[i].getText();
 			if (e.getSource() == bt2[i]) {
-				System.out.println(year + "-" + month + "-" + bt2[i].getText());
+//				System.out.println(year + "-" + month + "-" + bt2[i].getText());
 				vo.setDay(days);
 				SeatVO.remember(vo);
 				break;
@@ -425,13 +428,19 @@ public class Ticketing implements ActionListener {
 		if (e.getSource() == nextbtn) {
 			seatcord = SeatVO.user1.getMovie_cord() + SeatVO.user1.getCinema_cord() + SeatVO.user1.getSeat_number();
 			vo.setSeat_cord(seatcord);
-
+			SeatVO.remember(vo);
 			Boolean b = dao.ticket(SeatVO.user1);
 			if (b == true) {
-				new Success();
-				f.dispose();
-			} 
-			System.out.println(SeatVO.user1.toString());
+				TicketDAO tdao = new TicketDAO();
+				TicketVO tvo = new TicketVO();
+				Boolean b1 = tdao.insert(tvo);
+
+				if (b1 == true) {
+					new Success();
+					f.dispose();
+				}
+			}
+//			System.out.println(SeatVO.user1.toString());
 		}
 	}
 }

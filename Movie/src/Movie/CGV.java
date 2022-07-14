@@ -93,7 +93,7 @@ public class CGV implements ListSelectionListener {
 				for (num = 1; num <= 6; num++) {
 					if (num == j) {
 						MovieVO.user.setCinema_cord("c" + num);
-//						System.out.println("re의 정보 : " + MovieVO.user.toString()); // 들어갓는지 확인..
+//						System.out.println("user의 정보 : " + MovieVO.user.toString()); // 들어갓는지 확인..
 						new Ticketing();
 						f.dispose();
 					}

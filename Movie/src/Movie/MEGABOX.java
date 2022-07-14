@@ -78,7 +78,7 @@ public class MEGABOX implements ListSelectionListener {
 			if (list.getSelectedIndex() == i) {
 				name = cols[i];
 				MovieVO.user.setCinema_location(name);
-				System.out.println("user의 정보 : " + MovieVO.user.toString());
+//				System.out.println("user의 정보 : " + MovieVO.user.toString());
 			}
 		}
 		for (int j = 1; j <= 6; j++) { // 무비코드

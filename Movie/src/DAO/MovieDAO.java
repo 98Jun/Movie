@@ -24,7 +24,7 @@ public class MovieDAO {
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, user, password);
-			System.out.println("연결 완료");
+//			System.out.println("연결 완료");
 			sql = "SELECT c.CINEMA_NAME, c.MOVIE_CORD" + " FROM CINEMA c" + " WHERE c.MOVIE_CORD =" + "'"
 					+ vo.getMovie_cord() + "'" + "  AND c.CINEMA_NAME =" + "'" + "엄준식" + "'";
 			pstmt = con.prepareStatement(sql);
@@ -57,7 +57,7 @@ public class MovieDAO {
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, user, password);
-			System.out.println("연결 완료");
+//			System.out.println("연결 완료");
 			String sql = "SELECT c.CINEMA_LOCATION " + " FROM CINEMA c " + "WHERE  c.CINEMA_NAME = " + "'"
 					+ MovieVO.user.getCinema_name() + "'" + "AND c.MOVIE_CORD =" + "'" + MovieVO.user.getMovie_cord()
 					+ "'";

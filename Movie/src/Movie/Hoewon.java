@@ -60,14 +60,14 @@ public class Hoewon {
 				boolean b1 = tfpw.getText().equals(tfpw1.getText());
 				if (b1 == true) {
 					HoewonVO vo = new HoewonVO(tfid.getText(), tfpw.getText(), tfname.getText());
-					
+
 					boolean b = dao.insertData(vo);
 
 					if (b == true) {
 						new OKText();
-						f.setVisible(false);
+						f.dispose();
 					}
-				}else 
+				} else
 					new FailText();
 			}
 		});
