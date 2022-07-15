@@ -2,6 +2,7 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 //import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -16,8 +17,7 @@ public class SeatDAO {
 	private Connection con;
 	private Statement stmt;
 	private ResultSet rs;
-
-//	private PreparedStatement pstmt;
+	private PreparedStatement pstmt;
 	public boolean ticket(SeatVO vo) {
 		try {
 			connDB();
@@ -29,20 +29,8 @@ public class SeatDAO {
 			rs = stmt.executeQuery(sql);
 			rs.last();
 			if (rs.getRow() == 0) {
-//				try {
-//					connDB();
-//					String sql1 = "insert into seat(seat_number,cinema_cord,movie_cord,day,time,seat_cord) values(?,?,?,?,?,?)";
-//					pstmt = con.prepareStatement(sql1);
-//					pstmt.setString(1, vo.getSeat_number());
-//					pstmt.setString(2, vo.getCinema_cord());
-//					pstmt.setString(3, vo.getMovie_cord());
-//					pstmt.setString(4, vo.getDay());
-//					pstmt.setString(5, vo.getTime());
-//					pstmt.setString(6, vo.getSeat_cord());
-//				} catch (SQLException e1) {
-//					e1.printStackTrace();
-//				}
-//				return true;
+//				
+				return false;
 			} else
 				return true;
 		} catch (Exception e) {
@@ -57,6 +45,31 @@ public class SeatDAO {
 				stmt = null;
 		}
 		return false;
+	}
+	public void seatinsert() {
+		try {
+			connDB();
+			String sql1 = "insert into seat(seat_number,cinema_cord,movie_cord,day,time,seat_cord) values(?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql1);
+			pstmt.setString(1, SeatVO.user1.getSeat_number());
+			pstmt.setString(2, SeatVO.user1.getCinema_cord());
+			pstmt.setString(3, SeatVO.user1.getMovie_cord());
+			pstmt.setString(4, SeatVO.user1.getDay());
+			pstmt.setString(5, SeatVO.user1.getTime());
+			pstmt.setString(6, SeatVO.user1.getSeat_cord());
+			pstmt.executeUpdate();
+			pstmt.close();
+//			System.out.println("돌아가는 중");
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}finally {
+			if (con != null) {
+				con = null;
+			}
+			if (pstmt != null) {
+				pstmt = null;
+			}
+		}
 	}
 
 	public void connDB() {

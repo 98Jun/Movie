@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -64,11 +65,12 @@ public class Hoewon {
 					boolean b = dao.insertData(vo);
 
 					if (b == true) {
-						new OKText();
+						JOptionPane.showMessageDialog(null, "가입을 축하합니다 ! ", "", JOptionPane.PLAIN_MESSAGE);
 						f.dispose();
 					}
-				} else
-					new FailText();
+				} else {
+
+				}
 			}
 		});
 		okbtn.setFont(new Font("새굴림", Font.PLAIN, 12));

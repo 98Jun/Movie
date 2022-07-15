@@ -32,7 +32,7 @@ public class CGV implements ListSelectionListener {
 	private void initialize() {
 		f = new JFrame("CGV");
 		f.setBounds(100, 100, 500, 500);
-//		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.getContentPane().setLayout(null);
 
 		JPanel mainp = new JPanel();

@@ -32,7 +32,7 @@ public class MEGABOX implements ListSelectionListener {
 	private void initialize() {
 		f = new JFrame("MEGABOX");
 		f.setBounds(100, 100, 500, 500);
-//		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.getContentPane().setLayout(null);
 
 		JPanel mainp = new JPanel();

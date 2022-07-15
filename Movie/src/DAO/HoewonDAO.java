@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
+import javax.swing.JOptionPane;
+
 import VO.HoewonVO;
 
 public class HoewonDAO {
@@ -30,8 +32,10 @@ public class HoewonDAO {
 			pstmt.setString(3, vo.getName());
 			pstmt.executeUpdate();
 			pstmt.close();
+			
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "칸을 모두 채워주세요", "오류 메시지 제목", JOptionPane.ERROR_MESSAGE);
+			return false;
 		} finally {
 			if (con != null) {
 				con = null;

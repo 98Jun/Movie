@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -61,9 +62,9 @@ public class Login {
 			public void actionPerformed(ActionEvent e) { // 버튼을 눌럿을 떄
 
 				if (idtf.getText().equals("")) { //
-					new FailText();
+					JOptionPane.showMessageDialog(null, "아이디를 입력하세요. ", "", JOptionPane.ERROR_MESSAGE);
 				} else if (pwtf.getText().equals("")) {
-					new FailText();
+					JOptionPane.showMessageDialog(null, "비밀번호를 입력하세요.", "", JOptionPane.ERROR_MESSAGE);
 				} else {
 					UserVO vo = new UserVO(idtf.getText(), pwtf.getText()); // 디비에 있던 거랑 비교
 					boolean b = dao.list(vo);
@@ -73,9 +74,8 @@ public class Login {
 //						System.out.println(UserVO.user.getId());
 						new MovieFrame();
 						f.dispose();
-					} else
-						new FailText();
-
+					} else 
+						JOptionPane.showMessageDialog(null, "다시 입력 해 주세요.", "", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

@@ -55,7 +55,6 @@ public class Ticketing implements ActionListener {
 	private SeatVO vo;
 	private SeatDAO dao;
 	private String seatcord;
-	FailText ft;
 
 	public Ticketing() {
 		super();
@@ -426,21 +425,34 @@ public class Ticketing implements ActionListener {
 			}
 		}
 		if (e.getSource() == nextbtn) {
-			seatcord = SeatVO.user1.getMovie_cord() + SeatVO.user1.getCinema_cord() + SeatVO.user1.getSeat_number();
+			seatcord = SeatVO.user1.getMovie_cord() + SeatVO.user1.getCinema_cord() + SeatVO.user1.getSeat_number()
+					+ SeatVO.user1.getTime();
 			vo.setSeat_cord(seatcord);
 			SeatVO.remember(vo);
+//			System.out.println(SeatVO.user1.toString());
 			Boolean b = dao.ticket(SeatVO.user1);
 			if (b == true) {
 				TicketDAO tdao = new TicketDAO();
 				TicketVO tvo = new TicketVO();
 				Boolean b1 = tdao.insert(tvo);
-
 				if (b1 == true) {
 					new Success();
 					f.dispose();
 				}
+			} else {
+//				System.out.println("sdmsdksdjmk");
+				dao.seatinsert();
+				Boolean b1 = dao.ticket(SeatVO.user1);
+				if (b1 == true) {
+					TicketDAO tdao = new TicketDAO();
+					TicketVO tvo = new TicketVO();
+					Boolean b11 = tdao.insert(tvo);
+					if (b11 == true) {
+						new Success();
+						f.dispose();
+					}
+				}
 			}
-//			System.out.println(SeatVO.user1.toString());
 		}
 	}
 }

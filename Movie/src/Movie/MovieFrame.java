@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 
 import DAO.MovieDAO;
 import VO.MovieVO;
+import java.awt.Font;
 
 public class MovieFrame implements ActionListener {
 	private JButton witch2cgv, witch2megabox, city2cgv, city2megabox, wordcgv, wordmegabox, brocgv, bromegabox, topcgv,
@@ -24,14 +25,14 @@ public class MovieFrame implements ActionListener {
 	public MovieFrame() {
 		dao = new MovieDAO();
 		f = new JFrame("영화 선택");
-//		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				f.setVisible(false);
 			}
 		});
 		f.setSize(1000, 1000);
-		f.setLayout(null);
+		f.getContentPane().setLayout(null);
 		witch2cgv = new JButton(imgcgv);
 		witch2cgv.setBorderPainted(false);
 		witch2cgv.setBounds(120, 410, 51, 51);
@@ -109,26 +110,31 @@ public class MovieFrame implements ActionListener {
 		p6.setBounds(700, 550, 200, 300);
 
 		f.setBackground(Color.DARK_GRAY);
-		f.add(p1);
+		f.getContentPane().add(p1);
 
-		f.add(witch2cgv);
-		f.add(witch2megabox);
-		f.add(city2megabox);
-		f.add(city2cgv);
-		f.add(wordmegabox);
-		f.add(wordcgv);
-		f.add(brocgv);
-		f.add(bromegabox);
-		f.add(topmegabox);
-		f.add(topcgv);
-		f.add(bsmegabox);
-		f.add(bscgv);
+		f.getContentPane().add(witch2cgv);
+		f.getContentPane().add(witch2megabox);
+		f.getContentPane().add(city2megabox);
+		f.getContentPane().add(city2cgv);
+		f.getContentPane().add(wordmegabox);
+		f.getContentPane().add(wordcgv);
+		f.getContentPane().add(brocgv);
+		f.getContentPane().add(bromegabox);
+		f.getContentPane().add(topmegabox);
+		f.getContentPane().add(topcgv);
+		f.getContentPane().add(bsmegabox);
+		f.getContentPane().add(bscgv);
 
-		f.add(p2);
-		f.add(p3);
-		f.add(p4);
-		f.add(p5);
-		f.add(p6);
+		f.getContentPane().add(p2);
+		f.getContentPane().add(p3);
+		f.getContentPane().add(p4);
+		f.getContentPane().add(p5);
+		f.getContentPane().add(p6);
+		
+		JButton btnNewButton = new JButton("\uB4A4\uB85C\uAC00\uAE30");
+		btnNewButton.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 21));
+		btnNewButton.setBounds(12, 10, 131, 51);
+		f.getContentPane().add(btnNewButton);
 		f.setLocationRelativeTo(null); // 창이 가운데로
 		f.setResizable(false); // 크기변경 x
 		f.setVisible(true); // 실앻ㅇ
@@ -159,57 +165,46 @@ public class MovieFrame implements ActionListener {
 		} else if (e.getSource() == city2cgv) {
 			vo = new MovieVO("2", "CGV");
 			MovieVO.remember(vo);
-			System.out.println(vo.toString()); // 확인
 
 		} else if (e.getSource() == wordcgv) {
 			vo = new MovieVO("3", "CGV");
 			MovieVO.remember(vo);
-			System.out.println(vo.toString()); // 확인
 
 		} else if (e.getSource() == brocgv) {
 			vo = new MovieVO("4", "CGV");
 			MovieVO.remember(vo);
-			System.out.println(vo.toString()); // 확인
 
 		} else if (e.getSource() == topcgv) {
 			vo = new MovieVO("5", "CGV");
 			MovieVO.remember(vo);
-			System.out.println(vo.toString()); // 확인
 
 		} else if (e.getSource() == bscgv) {
 			vo = new MovieVO("6", "CGV");
 			MovieVO.remember(vo);
-			System.out.println(vo.toString()); // 확인
 
 		} else if (e.getSource() == witch2megabox) { //// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ megabox
 			vo = new MovieVO("1", "MEGABOX");
 			MovieVO.remember(vo);
-			System.out.println(vo.toString()); // 확인
 
 		} else if (e.getSource() == city2megabox) {
 			vo = new MovieVO("2", "MEGABOX");
 			MovieVO.remember(vo);
-			System.out.println(vo.toString()); // 확인
 
 		} else if (e.getSource() == wordmegabox) {
 			vo = new MovieVO("3", "MEGABOX");
 			MovieVO.remember(vo);
-			System.out.println(vo.toString()); // 확인
 
 		} else if (e.getSource() == topmegabox) {
 			vo = new MovieVO("4", "MEGABOX");
 			MovieVO.remember(vo);
-			System.out.println(vo.toString()); // 확인
 
 		} else if (e.getSource() == bromegabox) {
 			vo = new MovieVO("5", "MEGABOX");
 			MovieVO.remember(vo);
-			System.out.println(vo.toString()); // 확인
 
 		} else if (e.getSource() == bsmegabox) {
 			vo = new MovieVO("6", "MEGABOX");
 			MovieVO.remember(vo);
-			System.out.println(vo.toString()); // 확인
 		}
 
 		if (vo.getCinema_name().equals("CGV")) {

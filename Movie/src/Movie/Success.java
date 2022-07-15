@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import DAO.TicketDAO;
 import VO.TicketVO;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 public class Success {
@@ -52,8 +53,8 @@ public class Success {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dao.delete(TicketVO.user.getTicketnum());
-				System.out.println("삭제 완료");
 				
+				JOptionPane.showMessageDialog(null, "예매가 취소되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 
@@ -68,53 +69,129 @@ public class Success {
 		p.setLayout(null);
 
 		JLabel numlable = new JLabel(TicketVO.user.getTicketnum());
+		numlable.setFont(new Font("Dialog", Font.BOLD, 19));
 		numlable.setHorizontalAlignment(SwingConstants.CENTER);
-		numlable.setBounds(30, 345, 382, 31);
+		numlable.setBounds(154, 365, 273, 31);
 		p.add(numlable);
 
 		JLabel idlable = new JLabel(TicketVO.user.getId());
+		idlable.setFont(new Font("Dialog", Font.BOLD, 19));
 		idlable.setHorizontalAlignment(SwingConstants.CENTER);
-		idlable.setBounds(30, 58, 382, 31);
+		idlable.setBounds(154, 78, 273, 31);
 		p.add(idlable);
 		namelable = new JLabel(dao.name);
+		namelable.setFont(new Font("Dialog", Font.BOLD, 19));
 		namelable.setHorizontalAlignment(SwingConstants.CENTER);
-		namelable.setBounds(30, 99, 382, 31);
+		namelable.setBounds(154, 119, 273, 31);
 		p.add(namelable);
 
 		JLabel movielable = new JLabel(dao.moviename);
+		movielable.setFont(new Font("Dialog", Font.BOLD, 19));
 		movielable.setHorizontalAlignment(SwingConstants.CENTER);
-		movielable.setBounds(30, 140, 382, 31);
+		movielable.setBounds(154, 160, 273, 31);
 		p.add(movielable);
 
 		JLabel cinemanamelable = new JLabel(dao.cinemaname);
+		cinemanamelable.setFont(new Font("Dialog", Font.BOLD, 19));
 		cinemanamelable.setHorizontalAlignment(SwingConstants.CENTER);
-		cinemanamelable.setBounds(30, 181, 382, 31);
+		cinemanamelable.setBounds(154, 201, 273, 31);
 		p.add(cinemanamelable);
 
 		JLabel cinemalocationlable = new JLabel(dao.cinemalocation);
+		cinemalocationlable.setFont(new Font("Dialog", Font.BOLD, 19));
 		cinemalocationlable.setHorizontalAlignment(SwingConstants.CENTER);
-		cinemalocationlable.setBounds(30, 222, 382, 31);
+		cinemalocationlable.setBounds(154, 242, 273, 31);
 		p.add(cinemalocationlable);
 
 		JLabel seatlable = new JLabel(dao.seatnum);
+		seatlable.setFont(new Font("Dialog", Font.BOLD, 19));
 		seatlable.setHorizontalAlignment(SwingConstants.CENTER);
-		seatlable.setBounds(30, 263, 382, 31);
+		seatlable.setBounds(154, 283, 273, 31);
 		p.add(seatlable);
 
-		JLabel pricelable = new JLabel(dao.price);
+		JLabel pricelable = new JLabel(dao.price+" 원");
+		pricelable.setFont(new Font("Dialog", Font.BOLD, 19));
 		pricelable.setHorizontalAlignment(SwingConstants.CENTER);
-		pricelable.setBounds(30, 304, 382, 31);
+		pricelable.setBounds(154, 324, 273, 31);
 		p.add(pricelable);
 
 		JLabel daylable = new JLabel(dao.day);
+		daylable.setFont(new Font("Dialog", Font.BOLD, 19));
 		daylable.setHorizontalAlignment(SwingConstants.CENTER);
-		daylable.setBounds(30, 386, 382, 31);
+		daylable.setBounds(154, 406, 273, 31);
 		p.add(daylable);
 
 		JLabel timelable = new JLabel(dao.time);
+		timelable.setFont(new Font("Dialog", Font.BOLD, 19));
 		timelable.setHorizontalAlignment(SwingConstants.CENTER);
-		timelable.setBounds(30, 427, 382, 31);
+		timelable.setBounds(154, 447, 273, 31);
 		p.add(timelable);
+		
+		JLabel lblNewLabel = new JLabel("\uC601\uD654 \uC785\uC7A5\uAD8C / \uC601\uC218\uC99D \uACB8\uC6A9");
+		lblNewLabel.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 30));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(0, 10, 439, 38);
+		p.add(lblNewLabel);
+		
+		JLabel idl = new JLabel("ID : ");
+		idl.setHorizontalAlignment(SwingConstants.LEFT);
+		idl.setFont(new Font("Dialog", Font.BOLD, 19));
+		idl.setBounds(77, 78, 88, 31);
+		p.add(idl);
+		
+		JLabel namel = new JLabel("\uD68C\uC6D0 \uC774\uB984 : ");
+		namel.setHorizontalAlignment(SwingConstants.LEFT);
+		namel.setFont(new Font("Dialog", Font.BOLD, 19));
+		namel.setBounds(77, 119, 105, 31);
+		p.add(namel);
+		
+		JLabel movienamel = new JLabel("\uC601\uD654 \uC81C\uBAA9 : ");
+		movienamel.setHorizontalAlignment(SwingConstants.LEFT);
+		movienamel.setFont(new Font("Dialog", Font.BOLD, 19));
+		movienamel.setBounds(77, 160, 105, 31);
+		p.add(movienamel);
+		
+		JLabel cinemanamel = new JLabel("\uADF9\uC7A5 \uBE0C\uB79C\uB4DC :");
+		cinemanamel.setHorizontalAlignment(SwingConstants.LEFT);
+		cinemanamel.setFont(new Font("Dialog", Font.BOLD, 19));
+		cinemanamel.setBounds(77, 201, 115, 31);
+		p.add(cinemanamel);
+		
+		JLabel idlable_1_4 = new JLabel("\uC0C1\uC601\uAD00 : ");
+		idlable_1_4.setHorizontalAlignment(SwingConstants.LEFT);
+		idlable_1_4.setFont(new Font("Dialog", Font.BOLD, 19));
+		idlable_1_4.setBounds(77, 242, 88, 31);
+		p.add(idlable_1_4);
+		
+		JLabel seatl = new JLabel("\uC88C\uC11D  :");
+		seatl.setHorizontalAlignment(SwingConstants.LEFT);
+		seatl.setFont(new Font("Dialog", Font.BOLD, 19));
+		seatl.setBounds(77, 283, 88, 31);
+		p.add(seatl);
+		
+		JLabel pricel = new JLabel("\uAE08\uC561 :");
+		pricel.setHorizontalAlignment(SwingConstants.LEFT);
+		pricel.setFont(new Font("Dialog", Font.BOLD, 19));
+		pricel.setBounds(77, 324, 88, 31);
+		p.add(pricel);
+		
+		JLabel numl = new JLabel("\uC608\uB9E4 \uBC88\uD638 :");
+		numl.setHorizontalAlignment(SwingConstants.LEFT);
+		numl.setFont(new Font("Dialog", Font.BOLD, 19));
+		numl.setBounds(77, 365, 105, 31);
+		p.add(numl);
+		
+		JLabel dayl = new JLabel("\uC0C1\uC601 \uC77C\uC2DC :");
+		dayl.setHorizontalAlignment(SwingConstants.LEFT);
+		dayl.setFont(new Font("Dialog", Font.BOLD, 19));
+		dayl.setBounds(77, 406, 105, 31);
+		p.add(dayl);
+		
+		JLabel timel = new JLabel("\uC0C1\uC601 \uC2DC\uC791\uC2DC\uAC04 : ");
+		timel.setHorizontalAlignment(SwingConstants.LEFT);
+		timel.setFont(new Font("Dialog", Font.BOLD, 19));
+		timel.setBounds(77, 447, 140, 31);
+		p.add(timel);
 		f.setVisible(true); // 실행
 //		System.out.println(vo.toString());
 		retrybtn.addActionListener(new ActionListener() {
