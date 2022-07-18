@@ -28,7 +28,7 @@ public class CGV implements ListSelectionListener {
 	private String[] cols;
 	private MovieVO vo;
 	private JList<String> list;
-	 
+
 	public CGV() {
 		initialize();
 	}
@@ -59,8 +59,7 @@ public class CGV implements ListSelectionListener {
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);// 목록 중 하나만 선택 가능
 		list.setBounds(12, 91, 460, 360);
 		mainp.add(list);
-		
-		
+
 		ImageIcon backbt = new ImageIcon("../Movie/src/Image/backbt2.png");
 		JButton back = new JButton(backbt);
 		back.setBounds(12, 10, 81, 50);
@@ -69,11 +68,12 @@ public class CGV implements ListSelectionListener {
 		back.setFocusPainted(false);
 		back.setContentAreaFilled(false);
 		mainp.add(back);
-		back.addActionListener( new ActionListener() {
-			
+		back.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new MovieFrame();
+				f.dispose();
 			}
 		});
 		list.setFixedCellHeight(40);

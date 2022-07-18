@@ -20,8 +20,9 @@ public class MovieFrame implements ActionListener {
 	private ImageIcon imgmegabox = new ImageIcon("../Movie/src/Image/mega.png");
 	private MovieDAO dao;
 	private JFrame f;
+
 	public MovieFrame() {
-	
+
 		dao = new MovieDAO();
 		f = new JFrame("영화 선택");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,10 +44,9 @@ public class MovieFrame implements ActionListener {
 		witch2megabox.setBorderPainted(false);
 		witch2megabox.setBounds(220, 410, 51, 51);
 		witch2megabox.setBackground(Color.DARK_GRAY);
-		witch2megabox.setBorderPainted(false); 
-		witch2megabox.setFocusPainted(false);  
-		
-		
+		witch2megabox.setBorderPainted(false);
+		witch2megabox.setFocusPainted(false);
+
 		city2cgv = new JButton(imgcgv);
 		city2cgv.setBorderPainted(false);
 		city2cgv.setBounds(430, 410, 51, 51);

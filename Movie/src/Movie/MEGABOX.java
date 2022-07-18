@@ -62,7 +62,7 @@ public class MEGABOX implements ListSelectionListener {
 		Megaboxlabel.setBackground(Color.LIGHT_GRAY);
 		Megaboxlabel.setBounds(12, 10, 460, 71);
 		mainp.add(Megaboxlabel);
-		
+
 		ImageIcon backbt = new ImageIcon("../Movie/src/Image/backbt2.png");
 		JButton back = new JButton(backbt);
 		back.setBounds(12, 10, 81, 50);
@@ -71,11 +71,12 @@ public class MEGABOX implements ListSelectionListener {
 		back.setFocusPainted(false);
 		back.setContentAreaFilled(false);
 		mainp.add(back);
-		back.addActionListener( new ActionListener() {
-			
+		back.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new MovieFrame();
+				f.dispose();
 			}
 		});
 		f.setVisible(true);

@@ -257,9 +257,9 @@ public class Ticketing implements ActionListener {
 		seatp.add(screentf);
 
 		JPanel setp = new JPanel();
-		setp.setBounds(165, 180, 328, 233);
+		setp.setBounds(50, 159, 574, 250);
 		seatp.add(setp);
-		setp.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		setp.setLayout(null);
 
 		JPanel timep2 = new JPanel();
 		timep2.setLayout(null);
@@ -380,6 +380,30 @@ public class Ticketing implements ActionListener {
 				}
 			});
 		}
+		bt[0].setBounds(12, 10, 50, 50);
+		bt[1].setBounds(112, 10, 50, 50);
+		bt[2].setBounds(212, 10, 50, 50);
+		bt[3].setBounds(312, 10, 50, 50);
+		bt[4].setBounds(412, 10, 50, 50);
+		bt[5].setBounds(512, 10, 50, 50);
+		bt[6].setBounds(12, 70, 50, 50);
+		bt[7].setBounds(112, 70, 50, 50);
+		bt[8].setBounds(212, 70, 50, 50);
+		bt[9].setBounds(312, 70, 50, 50);
+		bt[10].setBounds(412, 70, 50, 50);
+		bt[11].setBounds(512, 70, 50, 50);
+		bt[12].setBounds(12, 130, 50, 50);
+		bt[13].setBounds(112, 130, 50, 50);
+		bt[14].setBounds(212, 130, 50, 50);
+		bt[15].setBounds(312, 130, 50, 50);
+		bt[16].setBounds(412, 130, 50, 50);
+		bt[17].setBounds(512, 130, 50, 50);
+		bt[18].setBounds(12, 190, 50, 50);
+		bt[19].setBounds(112, 190, 50, 50);
+		bt[20].setBounds(212, 190, 50, 50);
+		bt[21].setBounds(312, 190, 50, 50);
+		bt[22].setBounds(412, 190, 50, 50);
+		bt[23].setBounds(512, 190, 50, 50);
 		for (int i = 0; i < 20; i++) { // 시간 버튼 구현
 			timebt[i] = new JRadioButton(time[i]);
 			bgtime.add(timebt[i]);
@@ -429,6 +453,7 @@ public class Ticketing implements ActionListener {
 		f.setVisible(true); // 창ㄴ ㅏ옴
 		f.setLocationRelativeTo(null); // 창이 가운데로
 		f.setResizable(false); // 크기변경 x
+
 	}
 
 	@Override
@@ -437,25 +462,21 @@ public class Ticketing implements ActionListener {
 		for (int i = 0; i < 42; i++) { // 일 값
 			days = year + "-" + month + "-" + bt2[i].getText();
 			if (e.getSource() == bt2[i]) {
-					vo.setDay(days);
-					SeatVO.remember(vo);
-					break;
-				}
+				vo.setDay(days);
+				SeatVO.remember(vo);
+				break;
 			}
-		
+		}
+
 		if (e.getSource() == nextbtn) {
-//			if (SeatVO.user1.getSeat_number() == null && SeatVO.user1.getTime() == null
-//					&& SeatVO.user1.getDay() == null) {
-//				JOptionPane.showMessageDialog(null, " 상영 날짜를 선택 해 주세요 ", "", JOptionPane.QUESTION_MESSAGE);
-//			} else 
-//				if (SeatVO.user1.getDay() == null) {
-//				JOptionPane.showMessageDialog(null, " 상영 날짜를 선택 해 주세요 ", "", JOptionPane.QUESTION_MESSAGE);
-//			} else if (SeatVO.user1.getTime() == null) {
-//				JOptionPane.showMessageDialog(null, " 상영 시간를 선택 해 주세요 ", "", JOptionPane.QUESTION_MESSAGE);
-//			} else if (SeatVO.user1.getSeat_number() == null) {
-//				JOptionPane.showMessageDialog(null, " 좌석을 선택 해 주세요 ", "", JOptionPane.QUESTION_MESSAGE);
-//			} else {
-//				
+			if (SeatVO.user1.getDay() == null) {
+				JOptionPane.showMessageDialog(null, " 상영 날짜를 선택 해 주세요 ", "", JOptionPane.QUESTION_MESSAGE);
+			} else if (SeatVO.user1.getTime() == null) {
+				JOptionPane.showMessageDialog(null, " 상영 시간를 선택 해 주세요 ", "", JOptionPane.QUESTION_MESSAGE);
+			} else if (SeatVO.user1.getSeat_number() == null) {
+				JOptionPane.showMessageDialog(null, " 좌석을 선택 해 주세요 ", "", JOptionPane.QUESTION_MESSAGE);
+			} else {
+
 				seatcord = SeatVO.user1.getMovie_cord() + SeatVO.user1.getCinema_cord() + SeatVO.user1.getSeat_number()
 						+ SeatVO.user1.getTime();
 				vo.setSeat_cord(seatcord);
@@ -486,4 +507,4 @@ public class Ticketing implements ActionListener {
 
 		}
 	}
-//}
+}

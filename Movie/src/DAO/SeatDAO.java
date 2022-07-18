@@ -20,6 +20,7 @@ public class SeatDAO {
 	private Statement stmt;
 	private ResultSet rs;
 	private PreparedStatement pstmt;
+
 	public boolean ticket(SeatVO vo) {
 		try {
 			connDB();
@@ -48,6 +49,7 @@ public class SeatDAO {
 		}
 		return false;
 	}
+
 	public void seatinsert() {
 		try {
 			connDB();
@@ -65,7 +67,7 @@ public class SeatDAO {
 		} catch (Exception e1) {
 //			e1.printStackTrace();
 			JOptionPane.showMessageDialog(null, "이 좌석은 예매되어 있습니다. \n 다른 좌석을 선택해 주세요", "", JOptionPane.WARNING_MESSAGE);
-		}finally {
+		} finally {
 			if (con != null) {
 				con = null;
 			}

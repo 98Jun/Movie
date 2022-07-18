@@ -12,8 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 
 import DAO.UserDAO;
 import VO.UserVO;
@@ -54,7 +52,7 @@ public class Login {
 		p.setLayout(null);
 
 		namelabel = new JLabel("Movie Cord");
-		namelabel.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.BOLD, 46));
+		namelabel.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.BOLD, 49));
 		namelabel.setHorizontalAlignment(JLabel.CENTER);
 		namelabel.setBounds(12, 10, 386, 56);
 		p.add(namelabel);
@@ -83,7 +81,7 @@ public class Login {
 //						System.out.println(UserVO.user.getId());
 						new MovieFrame();
 						f.dispose();
-					} else 
+					} else
 						JOptionPane.showMessageDialog(null, "´Ù½Ã ÀÔ·Â ÇØ ÁÖ¼¼¿ä.", "", JOptionPane.ERROR_MESSAGE);
 				}
 			}

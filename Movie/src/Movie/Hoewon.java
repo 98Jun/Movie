@@ -55,7 +55,7 @@ public class Hoewon {
 		});
 		f.getContentPane().setLayout(null);
 
-		JButton okbtn = new JButton("가입?");
+		JButton okbtn = new JButton("가입");
 		okbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean b1 = tfpw.getText().equals(tfpw1.getText());
