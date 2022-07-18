@@ -12,7 +12,6 @@ import javax.swing.JFrame;
 
 import DAO.MovieDAO;
 import VO.MovieVO;
-import java.awt.Font;
 
 public class MovieFrame implements ActionListener {
 	private JButton witch2cgv, witch2megabox, city2cgv, city2megabox, wordcgv, wordmegabox, brocgv, bromegabox, topcgv,
@@ -21,8 +20,8 @@ public class MovieFrame implements ActionListener {
 	private ImageIcon imgmegabox = new ImageIcon("../Movie/src/Image/mega.png");
 	private MovieDAO dao;
 	private JFrame f;
-
 	public MovieFrame() {
+	
 		dao = new MovieDAO();
 		f = new JFrame("영화 선택");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,12 +35,18 @@ public class MovieFrame implements ActionListener {
 		witch2cgv = new JButton(imgcgv);
 		witch2cgv.setBorderPainted(false);
 		witch2cgv.setBounds(120, 410, 51, 51);
+		witch2cgv.setBackground(Color.LIGHT_GRAY);
 		witch2cgv.setOpaque(false); // 라벨 배경색 투명
+		witch2cgv.setBorderPainted(false);
+		witch2cgv.setFocusPainted(false);
 		witch2megabox = new JButton(imgmegabox);
 		witch2megabox.setBorderPainted(false);
 		witch2megabox.setBounds(220, 410, 51, 51);
 		witch2megabox.setBackground(Color.DARK_GRAY);
-
+		witch2megabox.setBorderPainted(false); 
+		witch2megabox.setFocusPainted(false);  
+		
+		
 		city2cgv = new JButton(imgcgv);
 		city2cgv.setBorderPainted(false);
 		city2cgv.setBounds(430, 410, 51, 51);
@@ -130,11 +135,6 @@ public class MovieFrame implements ActionListener {
 		f.getContentPane().add(p4);
 		f.getContentPane().add(p5);
 		f.getContentPane().add(p6);
-		
-		JButton btnNewButton = new JButton("\uB4A4\uB85C\uAC00\uAE30");
-		btnNewButton.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 21));
-		btnNewButton.setBounds(12, 10, 131, 51);
-		f.getContentPane().add(btnNewButton);
 		f.setLocationRelativeTo(null); // 창이 가운데로
 		f.setResizable(false); // 크기변경 x
 		f.setVisible(true); // 실앻ㅇ

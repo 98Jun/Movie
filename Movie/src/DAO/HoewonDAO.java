@@ -34,7 +34,7 @@ public class HoewonDAO {
 			pstmt.close();
 			
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "칸을 모두 채워주세요", "오류 메시지 제목", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "빈칸을 모두 입력 해 주세요", "", JOptionPane.ERROR_MESSAGE);
 			return false;
 		} finally {
 			if (con != null) {

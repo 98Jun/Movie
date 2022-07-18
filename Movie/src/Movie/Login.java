@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 import DAO.UserDAO;
 import VO.UserVO;
@@ -32,6 +34,12 @@ public class Login {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+//		try {
+//			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");// LookAndFeel Windows 스타일 적용
+//			SwingUtilities.updateComponentTreeUI(f);
+//		} catch (Exception e) {
+//			
+//		}
 		dao = new UserDAO();
 		f = new JFrame();
 		f.getContentPane().setFont(new Font("새굴림", Font.PLAIN, 12));
@@ -56,6 +64,7 @@ public class Login {
 		f.getContentPane().add(p1);
 		p1.setLayout(null);
 		JButton loginbtn = new JButton("로그인");
+		loginbtn.setFont(new Font("굴림", Font.BOLD, 12));
 		loginbtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -80,6 +89,7 @@ public class Login {
 			}
 		});
 		JButton hoewonbtn = new JButton("회원가입");
+		hoewonbtn.setFont(new Font("굴림", Font.BOLD, 12));
 		hoewonbtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -91,7 +101,7 @@ public class Login {
 		loginbtn.setBounds(273, 26, 97, 65);
 		p1.add(loginbtn);
 
-		hoewonbtn.setBounds(273, 112, 97, 23);
+		hoewonbtn.setBounds(273, 112, 97, 25);
 		p1.add(hoewonbtn);
 
 		idtf = new JTextField();

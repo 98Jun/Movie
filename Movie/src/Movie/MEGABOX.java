@@ -2,6 +2,8 @@ package Movie;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -16,6 +18,9 @@ import javax.swing.event.ListSelectionListener;
 
 import DAO.MovieDAO;
 import VO.MovieVO;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class MEGABOX implements ListSelectionListener {
 
@@ -57,6 +62,22 @@ public class MEGABOX implements ListSelectionListener {
 		Megaboxlabel.setBackground(Color.LIGHT_GRAY);
 		Megaboxlabel.setBounds(12, 10, 460, 71);
 		mainp.add(Megaboxlabel);
+		
+		ImageIcon backbt = new ImageIcon("../Movie/src/Image/backbt2.png");
+		JButton back = new JButton(backbt);
+		back.setBounds(12, 10, 81, 50);
+		back.setBackground(new Color(240, 248, 255));
+		back.setBorderPainted(false);
+		back.setFocusPainted(false);
+		back.setContentAreaFilled(false);
+		mainp.add(back);
+		back.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new MovieFrame();
+			}
+		});
 		f.setVisible(true);
 		f.setLocationRelativeTo(null); // 창이 가운데로
 		f.setResizable(false); // 크기변경 x

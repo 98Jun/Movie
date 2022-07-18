@@ -69,7 +69,7 @@ public class Hoewon {
 						f.dispose();
 					}
 				} else {
-
+					JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다. ", "", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

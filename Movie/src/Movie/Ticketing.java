@@ -16,6 +16,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -24,6 +25,7 @@ import javax.swing.SwingConstants;
 
 import DAO.SeatDAO;
 import DAO.TicketDAO;
+import VO.MovieVO;
 import VO.SeatVO;
 import VO.TicketVO;
 
@@ -236,7 +238,7 @@ public class Ticketing implements ActionListener {
 
 		nextbtn = new JButton("\uC608\uB9E4\uD558\uAE30");
 		nextbtn.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 19));
-		nextbtn.setBounds(684, 875, 270, 61);
+		nextbtn.setBounds(822, 875, 132, 61);
 		panel.add(nextbtn);
 
 		JPanel seatp = new JPanel();
@@ -343,6 +345,23 @@ public class Ticketing implements ActionListener {
 		timep5.add(fourp2_2);
 		fourp2_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
+		JButton back = new JButton("\uB4A4\uB85C\uAC00\uAE30");
+		back.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 19));
+		back.setBounds(684, 875, 132, 61);
+		panel.add(back);
+		back.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (MovieVO.user.getCinema_name().equals("CGV")) {
+					new CGV();
+					f.dispose();
+				} else {
+					new MEGABOX();
+					f.dispose();
+				}
+			}
+		});
 		bgseat = new ButtonGroup();
 		for (int i = 0; i < 24; i++) { // 좌석 버튼 구현 및 그룹 설정
 			bt[i] = new JToggleButton(seat[i]);
@@ -418,41 +437,53 @@ public class Ticketing implements ActionListener {
 		for (int i = 0; i < 42; i++) { // 일 값
 			days = year + "-" + month + "-" + bt2[i].getText();
 			if (e.getSource() == bt2[i]) {
-//				System.out.println(year + "-" + month + "-" + bt2[i].getText());
-				vo.setDay(days);
-				SeatVO.remember(vo);
-				break;
-			}
-		}
-		if (e.getSource() == nextbtn) {
-			seatcord = SeatVO.user1.getMovie_cord() + SeatVO.user1.getCinema_cord() + SeatVO.user1.getSeat_number()
-					+ SeatVO.user1.getTime();
-			vo.setSeat_cord(seatcord);
-			SeatVO.remember(vo);
-//			System.out.println(SeatVO.user1.toString());
-			Boolean b = dao.ticket(SeatVO.user1);
-			if (b == true) {
-				TicketDAO tdao = new TicketDAO();
-				TicketVO tvo = new TicketVO();
-				Boolean b1 = tdao.insert(tvo);
-				if (b1 == true) {
-					new Success();
-					f.dispose();
+					vo.setDay(days);
+					SeatVO.remember(vo);
+					break;
 				}
-			} else {
-//				System.out.println("sdmsdksdjmk");
-				dao.seatinsert();
-				Boolean b1 = dao.ticket(SeatVO.user1);
-				if (b1 == true) {
+			}
+		
+		if (e.getSource() == nextbtn) {
+//			if (SeatVO.user1.getSeat_number() == null && SeatVO.user1.getTime() == null
+//					&& SeatVO.user1.getDay() == null) {
+//				JOptionPane.showMessageDialog(null, " 상영 날짜를 선택 해 주세요 ", "", JOptionPane.QUESTION_MESSAGE);
+//			} else 
+//				if (SeatVO.user1.getDay() == null) {
+//				JOptionPane.showMessageDialog(null, " 상영 날짜를 선택 해 주세요 ", "", JOptionPane.QUESTION_MESSAGE);
+//			} else if (SeatVO.user1.getTime() == null) {
+//				JOptionPane.showMessageDialog(null, " 상영 시간를 선택 해 주세요 ", "", JOptionPane.QUESTION_MESSAGE);
+//			} else if (SeatVO.user1.getSeat_number() == null) {
+//				JOptionPane.showMessageDialog(null, " 좌석을 선택 해 주세요 ", "", JOptionPane.QUESTION_MESSAGE);
+//			} else {
+//				
+				seatcord = SeatVO.user1.getMovie_cord() + SeatVO.user1.getCinema_cord() + SeatVO.user1.getSeat_number()
+						+ SeatVO.user1.getTime();
+				vo.setSeat_cord(seatcord);
+				SeatVO.remember(vo);
+				Boolean b = dao.ticket(SeatVO.user1);
+				if (b == true) {
 					TicketDAO tdao = new TicketDAO();
 					TicketVO tvo = new TicketVO();
-					Boolean b11 = tdao.insert(tvo);
-					if (b11 == true) {
+					Boolean b1 = tdao.insert(tvo);
+					if (b1 == true) {
 						new Success();
 						f.dispose();
 					}
+				} else {
+					dao.seatinsert();
+					Boolean b1 = dao.ticket(SeatVO.user1);
+					if (b1 == true) {
+						TicketDAO tdao = new TicketDAO();
+						TicketVO tvo = new TicketVO();
+						Boolean b11 = tdao.insert(tvo);
+						if (b11 == true) {
+							new Success();
+							f.dispose();
+						}
+					}
 				}
 			}
+
 		}
 	}
-}
+//}

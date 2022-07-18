@@ -47,9 +47,8 @@ public class TicketDAO {
 //			
 			pstmt.close();
 		} catch (Exception e) {
-//			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "이 좌석은 예매되어 있습니다. \n 다른 좌석을 선택해 주세요", "", JOptionPane.WARNING_MESSAGE);
-//			new SorryFrame();
+			e.printStackTrace();
+//			JOptionPane.showMessageDialog(null, "이 좌석은 예매되어 있습니다. \n 다른 좌석을 선택해 주세요", "", JOptionPane.WARNING_MESSAGE);
 			return false;
 		} finally {
 			if (con != null) {
@@ -110,7 +109,7 @@ public class TicketDAO {
 
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 
 	}
