@@ -27,6 +27,8 @@ public class Hoewon {
 	private JTextField tfpw1;
 	private JTextField tfname;
 	private HoewonDAO dao;
+	private Image icon;
+	private HoewonVO vo;
 
 	/**
 	 * Launch the application.
@@ -47,7 +49,7 @@ public class Hoewon {
 		dao = new HoewonDAO();
 		f = new JFrame("회원가입");
 		Toolkit tk = Toolkit.getDefaultToolkit();
-		Image icon = tk.getImage("../Movie/src/Image/movieimg.png");
+		icon = tk.getImage("../Movie/src/Image/movieimg.png");
 		f.setIconImage(icon);
 		f.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
 		f.setBounds(100, 100, 327, 375);
@@ -66,7 +68,7 @@ public class Hoewon {
 						&& tfname.getText().equals(null)) {
 					JOptionPane.showMessageDialog(null, " ", "", JOptionPane.ERROR_MESSAGE);
 				} else if (tfpw.getText().equals(tfpw1.getText())) {
-					HoewonVO vo = new HoewonVO(tfid.getText(), tfpw.getText(), tfname.getText());
+					vo = new HoewonVO(tfid.getText(), tfpw.getText(), tfname.getText());
 					boolean b = dao.insertData(vo);
 
 					if (b == true) {

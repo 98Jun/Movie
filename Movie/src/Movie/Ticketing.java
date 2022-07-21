@@ -59,8 +59,8 @@ public class Ticketing implements ActionListener {
 	private SeatVO vo;
 	private SeatDAO dao;
 	private String seatcord;
-	int startDay;
-	int endDay;
+	private int startDay;
+	private int endDay;
 
 	public Ticketing() {
 		super();

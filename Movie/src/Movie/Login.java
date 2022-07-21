@@ -28,6 +28,7 @@ public class Login {
 	private JTextField pwtf;
 	private UserDAO dao;
 	private ImageIcon img;
+	private UserVO vo;
 	public Login() {
 		initialize();
 	}
@@ -89,7 +90,7 @@ public class Login {
 				} else if (pwtf.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "비밀번호를 입력하세요.", "", JOptionPane.ERROR_MESSAGE);
 				} else {
-					UserVO vo = new UserVO(idtf.getText(), pwtf.getText()); // 디비에 있던 거랑 비교
+					vo = new UserVO(idtf.getText(), pwtf.getText()); // 디비에 있던 거랑 비교
 					boolean b = dao.list(vo);
 					if (b == true) {
 						vo.setId(idtf.getText());

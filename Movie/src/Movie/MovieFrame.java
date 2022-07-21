@@ -11,6 +11,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import DAO.MovieDAO;
 import VO.MovieVO;
@@ -19,10 +20,11 @@ public class MovieFrame implements ActionListener {
 	private JButton witch2cgv, witch2megabox, city2cgv, city2megabox, wordcgv, wordmegabox, brocgv, bromegabox, topcgv,
 			topmegabox, bscgv, bsmegabox;
 	private ImageIcon imgcgv = new ImageIcon("../Movie/src/Image/CGV.png");
-	private ImageIcon rollcgv = new ImageIcon("../Movie/src/Image/CGV2.png");
 	private ImageIcon imgmegabox = new ImageIcon("../Movie/src/Image/mega.png");
 	private MovieDAO dao;
 	private JFrame f;
+	private MovieVO vo;
+	private JLabel lwitch2, lcity2, lword, ltopgun, lbroker, lbuzz;
 
 	public MovieFrame() {
 
@@ -113,34 +115,33 @@ public class MovieFrame implements ActionListener {
 		bsmegabox.setBorderPainted(false);
 		bsmegabox.setBounds(830, 860, 51, 51);
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 아래
+		ImageIcon iconwitch2 = new ImageIcon("../Movie/src/Image/witch2.jpg");
+		ImageIcon iconcity2 = new ImageIcon("../Movie/src/Image/city2.jpg");
+		ImageIcon iconword = new ImageIcon("../Movie/src/Image/word.jpg");
+		ImageIcon icontopgun = new ImageIcon("../Movie/src/Image/topgun.jpg");
+		ImageIcon iconbuzz = new ImageIcon("../Movie/src/Image/buzz.jpg");
+		ImageIcon iconbroker = new ImageIcon("../Movie/src/Image/broker.jpg");
+		lcity2 = new JLabel(iconcity2);
+		lword = new JLabel(iconword);
+		ltopgun = new JLabel(icontopgun);
+		lbroker = new JLabel(iconbroker);
+		lbuzz = new JLabel(iconbuzz);
+		lwitch2 = new JLabel(iconwitch2);
 
-		ImgPanel1 p1 = new ImgPanel1();
-		ImgPanel2 p2 = new ImgPanel2();
-		ImgPanel3 p3 = new ImgPanel3();
-		ImgPanel4 p4 = new ImgPanel4();
-		ImgPanel5 p5 = new ImgPanel5();
-		ImgPanel6 p6 = new ImgPanel6();
+		lwitch2.setBounds(100, 73, 200, 300);
 
-		p1.setLayout(null);
-		p1.setBounds(100, 73, 200, 300);
+		lcity2.setBounds(400, 73, 200, 300);
 
-		p2.setLayout(null);
-		p2.setBounds(400, 73, 200, 300);
+		lword.setBounds(700, 73, 200, 300);
 
-		p3.setLayout(null);
-		p3.setBounds(700, 73, 200, 300);
+		lbroker.setBounds(100, 550, 200, 300);
 
-		p4.setLayout(null);
-		p4.setBounds(100, 550, 200, 300);
+		ltopgun.setBounds(400, 550, 200, 300);
 
-		p5.setLayout(null);
-		p5.setBounds(400, 550, 200, 300);
-
-		p6.setLayout(null);
-		p6.setBounds(700, 550, 200, 300);
+		lbuzz.setBounds(700, 550, 200, 300);
 
 		f.setBackground(Color.DARK_GRAY);
-		f.getContentPane().add(p1);
+		f.getContentPane().add(lwitch2);
 
 		f.getContentPane().add(witch2cgv);
 		f.getContentPane().add(witch2megabox);
@@ -155,11 +156,11 @@ public class MovieFrame implements ActionListener {
 		f.getContentPane().add(bsmegabox);
 		f.getContentPane().add(bscgv);
 
-		f.getContentPane().add(p2);
-		f.getContentPane().add(p3);
-		f.getContentPane().add(p4);
-		f.getContentPane().add(p5);
-		f.getContentPane().add(p6);
+		f.getContentPane().add(lcity2);
+		f.getContentPane().add(lword);
+		f.getContentPane().add(lbroker);
+		f.getContentPane().add(ltopgun);
+		f.getContentPane().add(lbuzz);
 		f.setLocationRelativeTo(null); // 창이 가운데로
 		f.setResizable(false); // 크기변경 x
 		f.setVisible(true); // 실앻ㅇ
@@ -180,7 +181,7 @@ public class MovieFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		MovieVO vo = new MovieVO();
+		vo = new MovieVO();
 		dao.insertData(vo);
 		if (e.getSource() == witch2cgv) {
 			vo = new MovieVO("1", "CGV");
