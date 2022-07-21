@@ -1,9 +1,13 @@
 package Movie;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,7 +27,7 @@ public class Login {
 	private JTextField idtf;
 	private JTextField pwtf;
 	private UserDAO dao;
-
+	private ImageIcon img;
 	public Login() {
 		initialize();
 	}
@@ -39,7 +43,12 @@ public class Login {
 //			
 //		}
 		dao = new UserDAO();
-		f = new JFrame();
+		f = new JFrame("MOVIE CORD");
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image icon = tk.getImage("../Movie/src/Image/movieimg.png");
+		f.setIconImage(icon);
+		f.getContentPane().setBackground(Color.WHITE);
+		f.setBackground(Color.WHITE);
 		f.getContentPane().setFont(new Font("»õ±¼¸²", Font.PLAIN, 12));
 		f.setFont(new Font("»õ±¼¸²", Font.PLAIN, 12));
 		f.setBounds(100, 100, 450, 300);
@@ -47,21 +56,28 @@ public class Login {
 		f.getContentPane().setLayout(null);
 
 		JPanel p = new JPanel();
-		p.setBounds(12, 10, 410, 76);
+		p.setBackground(Color.WHITE);
+		p.setBounds(12, 20, 410, 76);
 		f.getContentPane().add(p);
 		p.setLayout(null);
-
-		namelabel = new JLabel("Movie Cord");
+		img = new ImageIcon("../Movie/src/Image/moviecord.PNG");
+		namelabel = new JLabel(img);
+		namelabel.setBackground(Color.WHITE);
 		namelabel.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.BOLD, 49));
 		namelabel.setHorizontalAlignment(JLabel.CENTER);
-		namelabel.setBounds(12, 10, 386, 56);
+		namelabel.setBounds(0, 10, 410, 76);
 		p.add(namelabel);
 
 		JPanel p1 = new JPanel();
+		p1.setBackground(Color.WHITE);
 		p1.setBounds(12, 106, 410, 145);
 		f.getContentPane().add(p1);
 		p1.setLayout(null);
-		JButton loginbtn = new JButton("·Î±×ÀÎ");
+		JButton loginbtn = new JButton();
+		loginbtn.setIcon(new ImageIcon(Login.class.getResource("../Image/login1.PNG")));
+		loginbtn.setRolloverIcon(new ImageIcon(Login.class.getResource("../Image/login21.PNG")));
+		loginbtn.setBorderPainted(false);
+		loginbtn.setToolTipText("");
 		loginbtn.setFont(new Font("±¼¸²", Font.BOLD, 12));
 		loginbtn.addActionListener(new ActionListener() {
 
@@ -86,7 +102,10 @@ public class Login {
 				}
 			}
 		});
-		JButton hoewonbtn = new JButton("È¸¿ø°¡ÀÔ");
+		JButton hoewonbtn = new JButton("");
+		hoewonbtn.setIcon(new ImageIcon(Login.class.getResource("../Image/Hoewon1.PNG")));
+		hoewonbtn.setRolloverIcon(new ImageIcon(Login.class.getResource("../Image/Hoewon2.PNG")));
+		hoewonbtn.setBorderPainted(false);
 		hoewonbtn.setFont(new Font("±¼¸²", Font.BOLD, 12));
 		hoewonbtn.addActionListener(new ActionListener() {
 
@@ -99,7 +118,7 @@ public class Login {
 		loginbtn.setBounds(273, 26, 97, 65);
 		p1.add(loginbtn);
 
-		hoewonbtn.setBounds(273, 112, 97, 25);
+		hoewonbtn.setBounds(273, 112, 97, 26);
 		p1.add(hoewonbtn);
 
 		idtf = new JTextField();

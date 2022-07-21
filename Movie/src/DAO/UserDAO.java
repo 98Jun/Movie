@@ -18,18 +18,18 @@ public class UserDAO {
 	private Statement stmt;
 	private ResultSet rs;
 
+	public UserDAO() {
+		connDB();
+	}
 	public boolean list(UserVO p) {
 		try {
-			connDB();
 
 			String query = "SELECT * FROM login WHERE id='" + p.getId() + "' AND pw='" + p.getPassword() + "'";
-//			System.out.println("SQL : " + query);
 			rs = stmt.executeQuery(query);
-			rs.last(); // ¹ºÁö¸ð¸§ ..
-//			System.out.println("rs.getRow() : " + rs.getRow());
+			rs.last(); 
 
 			if (rs.getRow() == 0) {
-//				System.out.println("0 row selected...");
+				System.out.println("0 row selected...");
 			} else {
 				return true;
 			}
@@ -52,9 +52,6 @@ public class UserDAO {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, user, password);
 			stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-//			System.out.println("oracle connection success.\n");
-//			System.out.println("jdbc driver loading success.");
-//			System.out.println("statement create success.\n");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

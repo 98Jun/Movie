@@ -73,6 +73,7 @@ class ImgPanel6 extends JPanel {
 	}
 
 }
+
 //class ImgPanel7 extends JPanel {
 //	
 //	private ImageIcon icon = new ImageIcon("C:/work/Movie/src/Image/moviecord.jpg");

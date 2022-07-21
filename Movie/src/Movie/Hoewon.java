@@ -1,6 +1,8 @@
 package Movie;
 
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -43,8 +45,10 @@ public class Hoewon {
 	private void initialize() {
 
 		dao = new HoewonDAO();
-
 		f = new JFrame("회원가입");
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image icon = tk.getImage("../Movie/src/Image/movieimg.png");
+		f.setIconImage(icon);
 		f.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
 		f.setBounds(100, 100, 327, 375);
 //		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,10 +62,11 @@ public class Hoewon {
 		JButton okbtn = new JButton("가입");
 		okbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean b1 = tfpw.getText().equals(tfpw1.getText());
-				if (b1 == true) {
+				if (tfid.getText().equals(null) && tfpw.getText().equals(null) && tfpw1.getText().equals(null)
+						&& tfname.getText().equals(null)) {
+					JOptionPane.showMessageDialog(null, " ", "", JOptionPane.ERROR_MESSAGE);
+				} else if (tfpw.getText().equals(tfpw1.getText())) {
 					HoewonVO vo = new HoewonVO(tfid.getText(), tfpw.getText(), tfname.getText());
-
 					boolean b = dao.insertData(vo);
 
 					if (b == true) {

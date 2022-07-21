@@ -2,11 +2,14 @@ package Movie;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -35,6 +38,9 @@ public class CGV implements ListSelectionListener {
 
 	private void initialize() {
 		f = new JFrame("CGV");
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image icon = tk.getImage("../Movie/src/Image/CGV.png");
+		f.setIconImage(icon);
 		f.setBounds(100, 100, 500, 500);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.getContentPane().setLayout(null);
@@ -56,6 +62,17 @@ public class CGV implements ListSelectionListener {
 		vo = new MovieVO();
 		cols = dao.Movielocation(vo);
 		list = new JList<String>(cols);
+		list.setFont(new Font("휴먼엑스포", Font.BOLD, 30));
+		list.setCellRenderer(new DefaultListCellRenderer() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public int getHorizontalAlignment() {
+				return CENTER;
+			}
+		});
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);// 목록 중 하나만 선택 가능
 		list.setBounds(12, 91, 460, 360);
 		mainp.add(list);

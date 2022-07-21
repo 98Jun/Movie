@@ -1,6 +1,8 @@
 package Movie;
 
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,7 +34,10 @@ public class Success {
 		TicketVO.user.setTicketnum(dao.ticket());
 		dao.list(TicketVO.user.getTicketnum());
 //		System.out.println(dao.id);
-		f = new JFrame();
+		f = new JFrame("영화 티켓");
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image icon = tk.getImage("../Movie/src/Image/movieimg.png");
+		f.setIconImage(icon);
 		f.setBounds(100, 100, 550, 700);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setLocationRelativeTo(null); // 창이 가운데로
@@ -74,54 +79,54 @@ public class Success {
 		numlable.setBounds(154, 365, 273, 31);
 		p.add(numlable);
 
-		JLabel idlable = new JLabel(TicketVO.user.getId());
+		JLabel idlable = new JLabel(dao.getId());
 		idlable.setFont(new Font("Dialog", Font.BOLD, 19));
 		idlable.setHorizontalAlignment(SwingConstants.CENTER);
 		idlable.setBounds(154, 78, 273, 31);
 		p.add(idlable);
-		namelable = new JLabel(dao.name);
+		namelable = new JLabel(dao.getName());
 		namelable.setFont(new Font("Dialog", Font.BOLD, 19));
 		namelable.setHorizontalAlignment(SwingConstants.CENTER);
 		namelable.setBounds(154, 119, 273, 31);
 		p.add(namelable);
 
-		JLabel movielable = new JLabel(dao.moviename);
+		JLabel movielable = new JLabel(dao.getMoviename());
 		movielable.setFont(new Font("Dialog", Font.BOLD, 19));
 		movielable.setHorizontalAlignment(SwingConstants.CENTER);
 		movielable.setBounds(154, 160, 273, 31);
 		p.add(movielable);
 
-		JLabel cinemanamelable = new JLabel(dao.cinemaname);
+		JLabel cinemanamelable = new JLabel(dao.getCinemaname());
 		cinemanamelable.setFont(new Font("Dialog", Font.BOLD, 19));
 		cinemanamelable.setHorizontalAlignment(SwingConstants.CENTER);
 		cinemanamelable.setBounds(154, 201, 273, 31);
 		p.add(cinemanamelable);
 
-		JLabel cinemalocationlable = new JLabel(dao.cinemalocation);
+		JLabel cinemalocationlable = new JLabel(dao.getCinemalocation());
 		cinemalocationlable.setFont(new Font("Dialog", Font.BOLD, 19));
 		cinemalocationlable.setHorizontalAlignment(SwingConstants.CENTER);
 		cinemalocationlable.setBounds(154, 242, 273, 31);
 		p.add(cinemalocationlable);
 
-		JLabel seatlable = new JLabel(dao.seatnum);
+		JLabel seatlable = new JLabel(dao.getSeatnum());
 		seatlable.setFont(new Font("Dialog", Font.BOLD, 19));
 		seatlable.setHorizontalAlignment(SwingConstants.CENTER);
 		seatlable.setBounds(154, 283, 273, 31);
 		p.add(seatlable);
 
-		JLabel pricelable = new JLabel(dao.price + " 원");
+		JLabel pricelable = new JLabel(dao.getPrice() + " 원");
 		pricelable.setFont(new Font("Dialog", Font.BOLD, 19));
 		pricelable.setHorizontalAlignment(SwingConstants.CENTER);
 		pricelable.setBounds(154, 324, 273, 31);
 		p.add(pricelable);
 
-		JLabel daylable = new JLabel(dao.day);
+		JLabel daylable = new JLabel(dao.getDay());
 		daylable.setFont(new Font("Dialog", Font.BOLD, 19));
 		daylable.setHorizontalAlignment(SwingConstants.CENTER);
 		daylable.setBounds(154, 406, 273, 31);
 		p.add(daylable);
 
-		JLabel timelable = new JLabel(dao.time);
+		JLabel timelable = new JLabel(dao.getTime());
 		timelable.setFont(new Font("Dialog", Font.BOLD, 19));
 		timelable.setHorizontalAlignment(SwingConstants.CENTER);
 		timelable.setBounds(154, 447, 273, 31);

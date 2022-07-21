@@ -1,6 +1,8 @@
 package Movie;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -17,6 +19,7 @@ public class MovieFrame implements ActionListener {
 	private JButton witch2cgv, witch2megabox, city2cgv, city2megabox, wordcgv, wordmegabox, brocgv, bromegabox, topcgv,
 			topmegabox, bscgv, bsmegabox;
 	private ImageIcon imgcgv = new ImageIcon("../Movie/src/Image/CGV.png");
+	private ImageIcon rollcgv = new ImageIcon("../Movie/src/Image/CGV2.png");
 	private ImageIcon imgmegabox = new ImageIcon("../Movie/src/Image/mega.png");
 	private MovieDAO dao;
 	private JFrame f;
@@ -25,6 +28,9 @@ public class MovieFrame implements ActionListener {
 
 		dao = new MovieDAO();
 		f = new JFrame("영화 선택");
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image icon = tk.getImage("../Movie/src/Image/movieimg.png");
+		f.setIconImage(icon);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -35,54 +41,73 @@ public class MovieFrame implements ActionListener {
 		f.getContentPane().setLayout(null);
 		witch2cgv = new JButton(imgcgv);
 		witch2cgv.setBorderPainted(false);
-		witch2cgv.setBounds(120, 410, 51, 51);
+		witch2cgv.setBounds(120, 383, 51, 51);
 		witch2cgv.setBackground(Color.LIGHT_GRAY);
 		witch2cgv.setOpaque(false); // 라벨 배경색 투명
 		witch2cgv.setBorderPainted(false);
 		witch2cgv.setFocusPainted(false);
 		witch2megabox = new JButton(imgmegabox);
 		witch2megabox.setBorderPainted(false);
-		witch2megabox.setBounds(220, 410, 51, 51);
+		witch2megabox.setBounds(220, 383, 51, 51);
 		witch2megabox.setBackground(Color.DARK_GRAY);
 		witch2megabox.setBorderPainted(false);
 		witch2megabox.setFocusPainted(false);
-
 		city2cgv = new JButton(imgcgv);
+		city2cgv.setBackground(Color.LIGHT_GRAY);
 		city2cgv.setBorderPainted(false);
-		city2cgv.setBounds(430, 410, 51, 51);
+		city2cgv.setBounds(430, 383, 51, 51);
+		city2cgv.setOpaque(false); // 라벨 배경색 투명
+		city2cgv.setBorderPainted(false);
+		city2cgv.setFocusPainted(false);
 		city2megabox = new JButton(imgmegabox);
 		city2megabox.setBackground(Color.DARK_GRAY);
 		city2megabox.setBorderPainted(false);
-		city2megabox.setBounds(530, 410, 51, 51);
+		city2megabox.setBounds(530, 383, 51, 51);
 
 		wordcgv = new JButton(imgcgv);
+		wordcgv.setBackground(Color.LIGHT_GRAY);
 		wordcgv.setBorderPainted(false);
-		wordcgv.setBounds(730, 410, 51, 51);
+		wordcgv.setBounds(730, 383, 51, 51);
+		wordcgv.setOpaque(false); // 라벨 배경색 투명
+		wordcgv.setBorderPainted(false);
+		wordcgv.setFocusPainted(false);
 		wordmegabox = new JButton(imgmegabox);
 		wordmegabox.setBackground(Color.DARK_GRAY);
 		wordmegabox.setBorderPainted(false);
-		wordmegabox.setBounds(830, 410, 51, 51);
+		wordmegabox.setBounds(830, 383, 51, 51);
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 위 		
 		brocgv = new JButton(imgcgv);
+		brocgv.setBackground(Color.LIGHT_GRAY);
 		brocgv.setBorderPainted(false);
 		brocgv.setBounds(120, 860, 51, 51);
 		brocgv.setOpaque(false); // 라벨 배경색 투명
+		brocgv.setOpaque(false); // 라벨 배경색 투명
+		brocgv.setBorderPainted(false);
+		brocgv.setFocusPainted(false);
 		bromegabox = new JButton(imgmegabox);
 		bromegabox.setBorderPainted(false);
 		bromegabox.setBounds(220, 860, 51, 51);
 		bromegabox.setBackground(Color.DARK_GRAY);
 
 		topcgv = new JButton(imgcgv);
+		topcgv.setBackground(Color.LIGHT_GRAY);
 		topcgv.setBorderPainted(false);
 		topcgv.setBounds(430, 860, 51, 51);
+		topcgv.setOpaque(false); // 라벨 배경색 투명
+		topcgv.setBorderPainted(false);
+		topcgv.setFocusPainted(false);
 		topmegabox = new JButton(imgmegabox);
 		topmegabox.setBackground(Color.DARK_GRAY);
 		topmegabox.setBorderPainted(false);
 		topmegabox.setBounds(530, 860, 51, 51);
 
 		bscgv = new JButton(imgcgv);
+		bscgv.setBackground(Color.LIGHT_GRAY);
 		bscgv.setBorderPainted(false);
 		bscgv.setBounds(730, 860, 51, 51);
+		bscgv.setOpaque(false); // 라벨 배경색 투명
+		bscgv.setBorderPainted(false);
+		bscgv.setFocusPainted(false);
 		bsmegabox = new JButton(imgmegabox);
 		bsmegabox.setBackground(Color.DARK_GRAY);
 		bsmegabox.setBorderPainted(false);
@@ -97,13 +122,13 @@ public class MovieFrame implements ActionListener {
 		ImgPanel6 p6 = new ImgPanel6();
 
 		p1.setLayout(null);
-		p1.setBounds(100, 100, 200, 300);
+		p1.setBounds(100, 73, 200, 300);
 
 		p2.setLayout(null);
-		p2.setBounds(400, 100, 200, 300);
+		p2.setBounds(400, 73, 200, 300);
 
 		p3.setLayout(null);
-		p3.setBounds(700, 100, 200, 300);
+		p3.setBounds(700, 73, 200, 300);
 
 		p4.setLayout(null);
 		p4.setBounds(100, 550, 200, 300);

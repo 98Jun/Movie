@@ -20,12 +20,16 @@ public class SeatDAO {
 	private Statement stmt;
 	private ResultSet rs;
 	private PreparedStatement pstmt;
-
+	private String sql;
+	
+	public SeatDAO() {
+	
+//		connDB();
+	}
 	public boolean ticket(SeatVO vo) {
 		try {
 			connDB();
-//			System.out.println("연결 완료");
-			String sql = "SELECT * " + " FROM SEAT s" + " WHERE s.SEAT_NUMBER = " + "'" + vo.getSeat_number() + "'"
+			sql = "SELECT * " + " FROM SEAT s" + " WHERE s.SEAT_NUMBER = " + "'" + vo.getSeat_number() + "'"
 					+ "and s.CINEMA_CORD = " + "'" + vo.getCinema_cord() + "'" + "and s.MOVIE_CORD = " + "'"
 					+ vo.getMovie_cord() + "'" + "and s.DAY = " + "'" + vo.getDay() + "'" + "and s.TIME = " + "'"
 					+ vo.getTime() + "'" + "and s.SEAT_CORD = " + "'" + vo.getSeat_cord() + "'";
@@ -53,8 +57,8 @@ public class SeatDAO {
 	public void seatinsert() {
 		try {
 			connDB();
-			String sql1 = "insert into seat(seat_number,cinema_cord,movie_cord,day,time,seat_cord) values(?,?,?,?,?,?)";
-			pstmt = con.prepareStatement(sql1);
+			sql = "insert into seat(seat_number,cinema_cord,movie_cord,day,time,seat_cord) values(?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, SeatVO.user1.getSeat_number());
 			pstmt.setString(2, SeatVO.user1.getCinema_cord());
 			pstmt.setString(3, SeatVO.user1.getMovie_cord());
@@ -63,7 +67,6 @@ public class SeatDAO {
 			pstmt.setString(6, SeatVO.user1.getSeat_cord());
 			pstmt.executeUpdate();
 			pstmt.close();
-//			System.out.println("돌아가는 중");
 		} catch (Exception e1) {
 //			e1.printStackTrace();
 			JOptionPane.showMessageDialog(null, "이 좌석은 예매되어 있습니다. \n 다른 좌석을 선택해 주세요", "", JOptionPane.WARNING_MESSAGE);

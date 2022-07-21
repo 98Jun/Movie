@@ -3,7 +3,6 @@ package DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-
 import javax.swing.JOptionPane;
 
 import VO.HoewonVO;
@@ -15,14 +14,19 @@ public class HoewonDAO {
 	private String password = "green1234";
 	private Connection con;
 	private PreparedStatement pstmt;
-
+	public HoewonDAO() {
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, user, password);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public boolean insertData(HoewonVO vo) {
 		String sql;
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, user, password);
 			sql = "insert into login(id,pw,name) ";
 			sql += "values(?,?,?)";
 			pstmt = con.prepareStatement(sql);
@@ -34,7 +38,14 @@ public class HoewonDAO {
 			pstmt.close();
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "빈칸을 모두 입력 해 주세요", "", JOptionPane.ERROR_MESSAGE);
+			if (vo.getId().equals("")) {
+				JOptionPane.showMessageDialog(null, "아이디를 입력 해 주세요", "", JOptionPane.ERROR_MESSAGE);
+			} else if (vo.getPw().equals("")) {
+				JOptionPane.showMessageDialog(null, "비밀번호를 입력 해 주세요", "", JOptionPane.ERROR_MESSAGE);
+			} else if (vo.getName().equals("")) {
+				JOptionPane.showMessageDialog(null, "이름을 입력 해 주세요", "", JOptionPane.ERROR_MESSAGE);
+			} else
+				JOptionPane.showMessageDialog(null, "이 아이디는 사용 중 입니다.", "", JOptionPane.ERROR_MESSAGE);
 			return false;
 		} finally {
 			if (con != null) {

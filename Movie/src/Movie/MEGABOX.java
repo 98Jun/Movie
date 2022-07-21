@@ -2,11 +2,16 @@ package Movie;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -18,9 +23,6 @@ import javax.swing.event.ListSelectionListener;
 
 import DAO.MovieDAO;
 import VO.MovieVO;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 
 public class MEGABOX implements ListSelectionListener {
 
@@ -36,6 +38,9 @@ public class MEGABOX implements ListSelectionListener {
 
 	private void initialize() {
 		f = new JFrame("MEGABOX");
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image icon = tk.getImage("../Movie/src/Image/megaboxlogo.png");
+		f.setIconImage(icon);
 		f.setBounds(100, 100, 500, 500);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.getContentPane().setLayout(null);
@@ -50,6 +55,17 @@ public class MEGABOX implements ListSelectionListener {
 		vo = new MovieVO();
 		cols = dao.Movielocation(vo);
 		list = new JList<String>(cols);
+		list.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.BOLD, 30));
+		list.setCellRenderer(new DefaultListCellRenderer() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public int getHorizontalAlignment() {
+				return CENTER;
+			}
+		});
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setBounds(12, 91, 460, 360);
 		list.setFixedCellHeight(40);

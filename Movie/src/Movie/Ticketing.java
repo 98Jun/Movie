@@ -6,8 +6,10 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Label;
 import java.awt.Panel;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
@@ -50,13 +52,15 @@ public class Ticketing implements ActionListener {
 	private String seat[] = { "a1", "a2", "a3", "a4", "a5", "a6", "b1", "b2", "b3", "b4", "b5", "b6", "c1", "c2", "c3",
 			"c4", "c5", "c6", "d1", "d2", "d3", "d4", "d5", "d6" };;
 	private String time[] = { "09 : 20", "10 : 30", "12 : 00", "16 : 50", "08 : 00", "09 : 00", "14 : 30", "17 : 20",
-			"17 : 00", "20 : 00", "21 : 10", "23 : 20", "11 : 30", "12 : 00", "16 : 50", "23 : 30", "09 : 00",
+			"17 : 00", "20 : 00", "21 : 10", "23 : 20", "11 : 30", "12 : 00", "16 : 50", "23 : 30", "09 : 10",
 			"19 : 20", "22 : 20", "23 : 00" };
 	private JButton nextbtn;
 	private String days;
 	private SeatVO vo;
 	private SeatDAO dao;
 	private String seatcord;
+	int startDay;
+	int endDay;
 
 	public Ticketing() {
 		super();
@@ -111,15 +115,15 @@ public class Ticketing implements ActionListener {
 			int startDay = 0;
 			int endDay = 0;
 
-			Calendar sDay = java.util.Calendar.getInstance();
-			Calendar eDay = java.util.Calendar.getInstance();
+			Calendar sDay = Calendar.getInstance();
+			Calendar eDay = Calendar.getInstance();
 
 			sDay.set(year, month - 1, 1);
 			eDay.set(year, month, 1);
 			eDay.add(java.util.Calendar.DATE, -1);
 
-			startDay = sDay.get(java.util.Calendar.DAY_OF_WEEK);
-			endDay = eDay.get(java.util.Calendar.DATE);
+			startDay = sDay.get(Calendar.DAY_OF_WEEK);
+			endDay = eDay.get(Calendar.DATE);
 
 			for (int i = 1; i <= endDay; i++) {
 				bt2[i + startDay - 2].setText(i + "");
@@ -153,11 +157,11 @@ public class Ticketing implements ActionListener {
 					year = Integer.parseInt(choice.getSelectedItem());
 					month = Integer.parseInt(choice1.getSelectedItem());
 
-					int startDay = 0;
-					int endDay = 0;
+					startDay = 0;
+					endDay = 0;
 
-					java.util.Calendar sDay = java.util.Calendar.getInstance();
-					java.util.Calendar eDay = java.util.Calendar.getInstance();
+					Calendar sDay = java.util.Calendar.getInstance();
+					Calendar eDay = java.util.Calendar.getInstance();
 
 					sDay.set(year, month - 1, 1);
 					eDay.set(year, month, 1);
@@ -237,7 +241,7 @@ public class Ticketing implements ActionListener {
 		twop2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		nextbtn = new JButton("\uC608\uB9E4\uD558\uAE30");
-		nextbtn.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 19));
+		nextbtn.setFont(new Font("휴먼엑스포", Font.BOLD, 20));
 		nextbtn.setBounds(822, 875, 132, 61);
 		panel.add(nextbtn);
 
@@ -346,7 +350,7 @@ public class Ticketing implements ActionListener {
 		fourp2_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JButton back = new JButton("\uB4A4\uB85C\uAC00\uAE30");
-		back.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 19));
+		back.setFont(new Font("휴먼엑스포", Font.BOLD, 20));
 		back.setBounds(684, 875, 132, 61);
 		panel.add(back);
 		back.addActionListener(new ActionListener() {
@@ -453,6 +457,9 @@ public class Ticketing implements ActionListener {
 		f.setVisible(true); // 창ㄴ ㅏ옴
 		f.setLocationRelativeTo(null); // 창이 가운데로
 		f.setResizable(false); // 크기변경 x
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image icon = tk.getImage("../Movie/src/Image/movieimg.png");
+		f.setIconImage(icon);
 
 	}
 
@@ -469,7 +476,7 @@ public class Ticketing implements ActionListener {
 		}
 
 		if (e.getSource() == nextbtn) {
-			if (SeatVO.user1.getDay() == null) {
+			if (vo.getDay() == null) {
 				JOptionPane.showMessageDialog(null, " 상영 날짜를 선택 해 주세요 ", "", JOptionPane.QUESTION_MESSAGE);
 			} else if (SeatVO.user1.getTime() == null) {
 				JOptionPane.showMessageDialog(null, " 상영 시간를 선택 해 주세요 ", "", JOptionPane.QUESTION_MESSAGE);
